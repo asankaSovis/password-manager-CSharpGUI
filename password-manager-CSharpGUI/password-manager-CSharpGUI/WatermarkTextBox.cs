@@ -56,7 +56,11 @@ namespace password_manager_CSharpGUI
                 else
                     return this.Text;
             }
-            set { Text = value; }
+            set 
+            {
+                RemoveWatermak();
+                Text = value;
+            }
         }
 
         /// <summary>

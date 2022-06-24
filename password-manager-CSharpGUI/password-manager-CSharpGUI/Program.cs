@@ -35,6 +35,7 @@ namespace password_manager_CSharpGUI
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new frmMain());
+            //Application.Run(new frmAddPassword());
             //Application.Run(new frmLogin());
             //Application.Run(new frmSetup("English"));
             //Application.Run(new frmMessage(new frmMain(), "Hello World", "", "English", MessageBoxIcon.Warning, MessageBoxButtons.YesNo));

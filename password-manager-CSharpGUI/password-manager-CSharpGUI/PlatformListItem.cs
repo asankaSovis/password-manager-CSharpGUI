@@ -98,6 +98,15 @@ namespace password_manager_CSharpGUI
         }
 
         /// <summary>
+        /// Sets the usernames
+        /// </summary>
+        /// <param name="newItems">New item list</param>
+        public void setUsernames(UsernameListItem[] newItems)
+        {
+            Usernames = newItems;
+        }
+
+        /// <summary>
         /// If the mouse enters, we change the back colour
         /// </summary>
         /// <param name="sender">Sender</param>

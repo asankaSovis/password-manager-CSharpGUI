@@ -248,7 +248,7 @@ namespace password_manager_CSharpGUI
             // txtSearch
             // 
             this.txtSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtSearch.ForeColor = System.Drawing.Color.Gray;
+            this.txtSearch.ForeColor = System.Drawing.Color.Black;
             this.txtSearch.Location = new System.Drawing.Point(44, 9);
             this.txtSearch.MainText = "";
             this.txtSearch.Name = "txtSearch";
@@ -322,6 +322,7 @@ namespace password_manager_CSharpGUI
             // bgwLoad
             // 
             this.bgwLoad.WorkerReportsProgress = true;
+            this.bgwLoad.WorkerSupportsCancellation = true;
             this.bgwLoad.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bgwLoad_DoWork);
             // 
             // tmrMain

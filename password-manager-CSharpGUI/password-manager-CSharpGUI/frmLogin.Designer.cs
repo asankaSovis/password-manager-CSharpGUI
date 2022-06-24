@@ -39,11 +39,11 @@ namespace password_manager_CSharpGUI
             this.tlpUser = new System.Windows.Forms.TableLayoutPanel();
             this.lblUser = new System.Windows.Forms.Label();
             this.tlpPassword = new System.Windows.Forms.TableLayoutPanel();
+            this.txtPassword = new password_manager_CSharpGUI.WatermarkTextBox();
             this.chkShow = new System.Windows.Forms.CheckBox();
             this.tmrMain = new System.Windows.Forms.Timer(this.components);
             this.bgwPassword = new System.ComponentModel.BackgroundWorker();
             this.tltMain = new System.Windows.Forms.ToolTip(this.components);
-            this.txtPassword = new password_manager_CSharpGUI.WatermarkTextBox();
             this.tlpMain.SuspendLayout();
             this.tlpButtons.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.spcButton)).BeginInit();
@@ -196,6 +196,23 @@ namespace password_manager_CSharpGUI
             this.tlpPassword.Size = new System.Drawing.Size(272, 39);
             this.tlpPassword.TabIndex = 2;
             // 
+            // txtPassword
+            // 
+            this.txtPassword.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.01739F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtPassword.ForeColor = System.Drawing.Color.Gray;
+            this.txtPassword.Location = new System.Drawing.Point(45, 6);
+            this.txtPassword.MainText = "";
+            this.txtPassword.Name = "txtPassword";
+            this.txtPassword.Size = new System.Drawing.Size(224, 26);
+            this.txtPassword.TabIndex = 1;
+            this.txtPassword.Text = "Type here";
+            this.txtPassword.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtPassword.WatermarkActive = true;
+            this.txtPassword.WatermarkText = "Enter Text";
+            this.txtPassword.TextChanged += new System.EventHandler(this.txtPassword_TextChanged);
+            this.txtPassword.KeyDown += new System.Windows.Forms.KeyEventHandler(this.KeyDown);
+            // 
             // chkShow
             // 
             this.chkShow.Appearance = System.Windows.Forms.Appearance.Button;
@@ -225,21 +242,6 @@ namespace password_manager_CSharpGUI
             this.tltMain.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
             this.tltMain.ToolTipTitle = "Muragala Password Manager";
             this.tltMain.Popup += new System.Windows.Forms.PopupEventHandler(this.tltMain_Popup);
-            // 
-            // txtPassword
-            // 
-            this.txtPassword.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.01739F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPassword.ForeColor = System.Drawing.Color.Gray;
-            this.txtPassword.Location = new System.Drawing.Point(45, 6);
-            this.txtPassword.Name = "txtPassword";
-            this.txtPassword.Size = new System.Drawing.Size(224, 26);
-            this.txtPassword.TabIndex = 1;
-            this.txtPassword.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.txtPassword.WatermarkActive = true;
-            this.txtPassword.WatermarkText = "Enter Text";
-            this.txtPassword.TextChanged += new System.EventHandler(this.txtPassword_TextChanged);
-            this.txtPassword.KeyDown += new System.Windows.Forms.KeyEventHandler(this.KeyDown);
             // 
             // frmLogin
             // 

@@ -69,8 +69,8 @@ namespace password_manager_CSharpGUI
             this.txtRetype.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.txtRetype.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.01739F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtRetype.ForeColor = System.Drawing.Color.Gray;
-            this.txtRetype.Text = "";
             this.txtRetype.Location = new System.Drawing.Point(18, 246);
+            this.txtRetype.MainText = "";
             this.txtRetype.Margin = new System.Windows.Forms.Padding(8, 3, 8, 3);
             this.txtRetype.Name = "txtRetype";
             this.txtRetype.Size = new System.Drawing.Size(349, 26);
@@ -141,8 +141,8 @@ namespace password_manager_CSharpGUI
             this.txtType.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.txtType.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.01739F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtType.ForeColor = System.Drawing.Color.Gray;
-            this.txtType.Text = "";
             this.txtType.Location = new System.Drawing.Point(18, 214);
+            this.txtType.MainText = "";
             this.txtType.Margin = new System.Windows.Forms.Padding(8, 3, 8, 3);
             this.txtType.Name = "txtType";
             this.txtType.Size = new System.Drawing.Size(349, 26);

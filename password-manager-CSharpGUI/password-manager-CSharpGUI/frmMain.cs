@@ -92,6 +92,8 @@ namespace password_manager_CSharpGUI
         // TODO: Make blank before pushing
         Tuple<string, bool> userPasscode = new Tuple<string, bool>("", false);
 
+        Tuple<int, bool, bool, bool> passwordSettings = new Tuple<int, bool, bool, bool>(12, true, true, true);
+
         /// <summary>
         /// Initializes the application
         /// This function will load the necessary components for the application
@@ -144,9 +146,25 @@ namespace password_manager_CSharpGUI
 
                 foreach (var item in platforms)
                 {
-                    // For each item in the platforms list, we chech if it already
-                    // exists in the platforms list.
-                    if (!flpPlatforms.Controls.Contains(item))
+                    // For each item in the platforms list, we first load the platform names
+                    // and all usernames under these platforms into  dictionary of lists.
+                    // Then we can use it to chech if it already exists in the platforms list.
+
+                    Dictionary<string, List<string>> platformStrings = new Dictionary<string, List<string>>();
+
+                    foreach(PlatformListItem platformItem in flpPlatforms.Controls)
+                    {
+                        List<string> usernameStrings = new List<string>();
+
+                        foreach (UsernameListItem usernameItem in platformItem.getUsernames())
+                        {
+                            usernameStrings.Add(usernameItem.getUsername());
+                        }
+
+                        platformStrings.Add(platformItem.getPlatform(), usernameStrings);
+                    }
+
+                    if (!platformStrings.ContainsKey(item.getPlatform()))
                     {
                         // If the item does not exist in the list, we check if a search
                         // is in place by checking if the text length of the txtSearch
@@ -177,6 +195,40 @@ namespace password_manager_CSharpGUI
                             flpPlatforms.Controls.Add(item);
                         }
                     }
+                    else
+                    {
+                        // If the platform is there, we check the  username also exist, if so we
+                        // don't add them, otherwise we add it under the platform
+                        bool contains = false;
+
+                        foreach (UsernameListItem usernameItem in item.getUsernames())
+                        {
+                            if (platformStrings[item.getPlatform()].Contains(usernameItem.getUsername()))
+                            {
+                                contains = true;
+                                break;
+                            }
+                        }
+
+                        if (!contains)
+                        {
+                            if (item.getPlatform().Contains(txtSearch.MainText))
+                            {
+                                flpPlatforms.Controls.Add(item);
+                            }
+                            else
+                            {
+                                // If not, we check each username within that platform
+                                foreach (var username in item.getUsernames())
+                                {
+                                    // If the username matches the search, we add it. Otherwise
+                                    // we do nothing
+                                    if (username.getUsername().Contains(txtSearch.MainText))
+                                        flpPlatforms.Controls.Add(item);
+                                }
+                            }
+                        }
+                    }
                 }
 
                 resizeItems(); // We resize items to bring them back to the correct size of the window
@@ -193,8 +245,7 @@ namespace password_manager_CSharpGUI
                     // Then we load the count string with the total username count (item3)
                     // and set the status string to complete and stats (Total profiles and platforms)
                     tstCount.Text = countString(platformProgress.Item3, lang.get("00x0005"), lang.get("00x0006"));
-                    tstStatus.Text = lang.get("00x0010", new string[] { lang.get("00x0013"), countString(platformProgress.Item3, lang.get("00x0005"), lang.get("00x0006")), countString(flpPlatforms.Controls.Count, lang.get("00x0007"), lang.get("00x0008")) });
-                    tstStatus.Image = statusIcons[1];
+                    setStatusStrip(lang.get("00x0010", new string[] { lang.get("00x0013"), countString(platformProgress.Item3, lang.get("00x0005"), lang.get("00x0006")), countString(flpPlatforms.Controls.Count, lang.get("00x0007"), lang.get("00x0008")) }), statusIcons[1]);
 
                     // We then reset platformProgress to null to indicate that work is complete,
                     // enable reload button and set the default cursor
@@ -303,7 +354,72 @@ namespace password_manager_CSharpGUI
         /// <param name="e">Event Arguements</param>
         private void btnAdd_Click(object sender, EventArgs e)
         {
+            if (userPasscode.Item1 == "")
+               loadPassword();
 
+            // If the password was not entered, we skip after showing an error
+            if (userPasscode.Item1 != "")
+            {
+                // We save the passcode to a temporary variable in case the user locks the application
+                string tempPassword = userPasscode.Item1;
+                if (!userPasscode.Item2)
+                    userPasscode = new Tuple<string, bool>("", userPasscode.Item2);
+
+                string platform = "";
+
+                // If a platform is selected, we load its name
+                if (selectedItem[0] != -1)
+                    platform = platforms[selectedItem[0]].getPlatform();
+
+                // We cancel the background worker
+                bgwLoad.CancelAsync();
+
+                // Open the add password form
+                frmAddPassword addPassword = new frmAddPassword(this, tempPassword, false, passwordSettings, platform);
+                addPassword.ShowDialog();
+
+                // If the add status is 0 (Successful), we load that password to the list
+                if (addPassword.taskStatus.Item2 == 0)
+                {
+                    Cursor = Cursors.AppStarting;
+
+                    Tuple<string, string> addedPlatform = addPassword.getPlatformInfo();
+
+                    bool added = false;
+
+                    foreach (PlatformListItem item in platforms)
+                    {
+                        if (addedPlatform.Item1 == item.getPlatform())
+                        {
+                            UsernameListItem newUsername = new UsernameListItem(this, item.getUsernames().Count(), addedPlatform.Item2);
+                            item.Controls.Add(newUsername);
+                            added = true;
+                            break;
+                        }
+                    }
+
+                    // If it doesn't exist, we add it
+                    if (!added)
+                    {
+                        UsernameListItem newUsername = new UsernameListItem(this, 0, addedPlatform.Item2);
+                        List<UsernameListItem> newUsernameList = new List<UsernameListItem>();
+                        newUsernameList.Add(newUsername);
+                        PlatformListItem newPlatform = new PlatformListItem(this, flpPlatforms.Controls.Count, addedPlatform.Item1, newUsernameList.ToArray());
+                        platforms.Add(newPlatform);
+                    }
+
+                    setStatusStrip(lang.get("00x0044"), statusIcons[1]);
+
+                    // Rerun the platform loading
+                    refreshPlatforms(txtSearch.MainText);
+                    resizeItems();
+                    Cursor = DefaultCursor;
+                }
+            }
+            else
+            {
+                setStatusStrip(lang.get("00x0038"), statusIcons[2]);
+            }
         }
 
         /// <summary>
@@ -316,8 +432,7 @@ namespace password_manager_CSharpGUI
             userPasscode = new Tuple<string, bool>("", false);
             btnLock.Visible = false;
 
-            tstStatus.Text = lang.get("00x0040");
-            tstStatus.Image = loadIcon("lock");
+            setStatusStrip(lang.get("00x0040"), loadIcon("lock"));
         }
 
         /// <summary>
@@ -414,9 +529,11 @@ namespace password_manager_CSharpGUI
         /// </summary>
         private void loadData()
         {
+            // Load password
             if (userPasscode.Item1 == "")
                 loadPassword();
 
+            // If password was added successfully, we run background worker
             if (userPasscode.Item1 != "")
             {
                 Cursor = Cursors.AppStarting;
@@ -426,10 +543,8 @@ namespace password_manager_CSharpGUI
                 bgwLoad.RunWorkerAsync();
             }
             else
-            {
-                tstStatus.Text = lang.get("00x0038");
-                tstStatus.Image = statusIcons[2];
-            }
+                // Error message
+                setStatusStrip(lang.get("00x0038"), statusIcons[2]);
         }
 
         /// <summary>
@@ -438,8 +553,7 @@ namespace password_manager_CSharpGUI
         private void loadPassword()
         {
             // Setting the status indications
-            tstStatus.Text = lang.get("00x0039");
-            tstStatus.Image = statusIcons[0];
+            setStatusStrip(lang.get("00x0039"), statusIcons[0]);
 
             // Creating the login form and setting up the password
             frmLogin login = new frmLogin(this);
@@ -457,6 +571,8 @@ namespace password_manager_CSharpGUI
         /// </summary>
         private void loadPlatforms()
         {
+            if (bgwLoad.CancellationPending)
+                bgwLoad.Dispose();
             // We save the passcode to a temporary variable in case the user locks the application
             string tempPassword = userPasscode.Item1;
             if (!userPasscode.Item2)
@@ -668,13 +784,10 @@ namespace password_manager_CSharpGUI
             // If the search text is not empty (No searching done by user), we update status text
             // with the number of matches. Otherwise we empty it
             if (txtSearch.MainText != "")
-                tstStatus.Text = lang.get("00x0014", countString(flpPlatforms.Controls.Count, lang.get("00x0015"), lang.get("00x0016")));
+                setStatusStrip(lang.get("00x0014", countString(flpPlatforms.Controls.Count, lang.get("00x0015"), lang.get("00x0016"))), usernameListItemIcons[0]);
             else
-                tstStatus.Text = "";
+                setStatusStrip("", null);
 
-            // Enable search box and let user type again and set the default cursor
-            //txtSearch.Enabled = true;
-            //txtSearch.Focus();
             Cursor = DefaultCursor;
         }
 
@@ -686,10 +799,13 @@ namespace password_manager_CSharpGUI
             // First we clear the listbox
             flpUsernames.Controls.Clear();
 
-            // For each username item in the selected platform, we add it to the list
-            foreach (var item in platforms[selectedItem[0]].getUsernames())
+            if (platforms.Count > selectedItem[0])
             {
-                flpUsernames.Controls.Add(item);
+                // For each username item in the selected platform, we add it to the list
+                foreach (var item in platforms[selectedItem[0]].getUsernames())
+                {
+                    flpUsernames.Controls.Add(item);
+                }
             }
 
             // If no loading is happening, we show number of profiles and the platform name
@@ -790,6 +906,8 @@ namespace password_manager_CSharpGUI
             }
         }
 
+
+
         /// <summary>
         /// If a profile is requested to be viewed
         /// </summary>
@@ -811,7 +929,124 @@ namespace password_manager_CSharpGUI
             if (ID < flpUsernames.Controls.Count)
             {
                 // TODO: Delete profile
+                if (userPasscode.Item1 == "")
+                    loadPassword();
+
+                // If the password was not entered, we skip after showing an error
+                if (userPasscode.Item1 != "")
+                {
+                    // We save the passcode to a temporary variable in case the user locks the application
+                    string tempPassword = userPasscode.Item1;
+                    if (!userPasscode.Item2)
+                        userPasscode = new Tuple<string, bool>("", userPasscode.Item2);
+
+                    // We cancel the background worker
+                    bgwLoad.CancelAsync();
+
+                    string platform = platforms[selectedItem[0]].getPlatform();
+                    string username = platforms[selectedItem[0]].getUsernames()[ID].getUsername();
+
+                    // Open the delete password form
+                    frmDelete deletePassword = new frmDelete(this, tempPassword, platform, username);
+                    deletePassword.ShowDialog();
+
+                    // If the delete status is 0 (Successful), we load that password to the list
+                    if (deletePassword.taskStatus.Item2 == 0)
+                    {
+                        Cursor = Cursors.AppStarting;
+
+                        for (int i = 0; i < platforms.Count; i++)
+                        {
+                            if (platforms[i].getPlatform() == platform)
+                            {
+                                if (platforms[i].getUsernames().Count() < 2)
+                                {
+                                    platforms.RemoveAt(i);
+                                }
+                                else
+                                {
+                                    List<UsernameListItem> newList = platforms[i].getUsernames().ToList();
+
+                                    for (int j = 0; j < newList.Count(); j++)
+                                    {
+                                        if (newList[j].getUsername() == username)
+                                        {
+                                            newList.RemoveAt(j);
+                                            platforms[i].setUsernames(newList.ToArray());
+                                            break;
+                                        }
+                                    }
+                                }
+
+                                break;
+                            }
+                        }
+
+                        selectPlatform(-1);
+
+                        setStatusStrip(lang.get("00x0044"), statusIcons[1]);
+
+                        // Rerun the platform loading
+                        refreshPlatforms(txtSearch.MainText);
+                        resizeItems();
+                        Cursor = DefaultCursor;
+                    }
+                }
+                else
+                {
+                    setStatusStrip(lang.get("00x0038"), statusIcons[2]);
+                }
             }
+        }
+
+        /// <summary>
+        /// Deletes a profile
+        /// </summary>
+        /// <param name="passcode">Authentication passcode</param>
+        /// <param name="platform">Platform</param>
+        /// <param name="username">Username</param>
+        /// <returns>Error status according to the error list in library</returns>
+        public int deleteProfile(string passcode, string platform, string username)
+        {
+            return library.deletePassword(passcode, platform, username);
+        }
+
+        /// <summary>
+        /// Adds a new password to the database
+        /// </summary>
+        /// <param name="passcode">Passcode to authenticate</param>
+        /// <param name="platform">Platform</param>
+        /// <param name="username">Username</param>
+        /// <param name="password">Password</param>
+        /// <returns>Error as integer { 0: success, 1: exist, 2: error }</returns>
+        public int addPassword(string passcode, string platform, string username, string password)
+        {
+            int error = 0;
+
+            // If password does not already exist in the database, we add it to the database
+            // and return an error
+            if (library.getUserData(passcode, platform, username).Count == 0)
+            {
+                if (!library.addPassword(passcode, platform, username, password))
+                    error = 2;
+            }
+            else
+                error = 1;
+
+            return error;
+        }
+
+        /// <summary>
+        /// Returns a random password
+        /// </summary>
+        /// <param name="size">Length of the password</param>
+        /// <param name="uppercase">Enable uppercase</param>
+        /// <param name="numbers">Enable numbers</param>
+        /// <param name="symbols">Enable symbols</param>
+        /// <returns>Returns the random password</returns>
+        public string getRandomPassword(int size, bool uppercase, bool numbers, bool symbols)
+        {
+            return library.randomPassword(size, uppercase, numbers, symbols);
         }
 
         ///////////////////////////////////////////////////////////////
@@ -914,6 +1149,16 @@ namespace password_manager_CSharpGUI
                 return lang.get("00x0009", new string[] { count.ToString(), singularForm });
             else
                 return lang.get("00x0009", new string[] { count.ToString(), pluralForm });
+        }
+
+        /// <summary>
+        /// Set the status strip text and image
+        /// </summary>
+        /// <param name="status">Status text</param>
+        /// <param name="icon">Status icon</param>
+        private void setStatusStrip(string status, Image icon)
+        {
+            tstStatus.Text = status; tstStatus.Image = icon;
         }
     }
 }

@@ -174,7 +174,7 @@ namespace password_manager_CSharpGUI
         /// <returns>String</returns>
         public static string parse(string text, string vars)
         {
-            return text.Replace("%s0", vars);
+            try { return text.Replace("%s0", vars); }catch { return text; }
         }
 
         /// <summary>
