@@ -299,6 +299,7 @@ namespace password_manager_CSharpGUI
             this.btnSettings.Size = new System.Drawing.Size(46, 46);
             this.btnSettings.TabIndex = 4;
             this.btnSettings.UseVisualStyleBackColor = true;
+            this.btnSettings.Click += new System.EventHandler(this.btnSettings_Click);
             // 
             // btnAbout
             // 
@@ -308,6 +309,7 @@ namespace password_manager_CSharpGUI
             this.btnAbout.Size = new System.Drawing.Size(46, 46);
             this.btnAbout.TabIndex = 5;
             this.btnAbout.UseVisualStyleBackColor = true;
+            this.btnAbout.Click += new System.EventHandler(this.btnAbout_Click);
             // 
             // btnLock
             // 

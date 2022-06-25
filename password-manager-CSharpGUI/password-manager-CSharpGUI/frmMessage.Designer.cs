@@ -182,9 +182,10 @@ namespace password_manager_CSharpGUI
             this.ClientSize = new System.Drawing.Size(584, 433);
             this.Controls.Add(this.tlpMain);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.MaximumSize = new System.Drawing.Size(602, 500);
-            this.MinimumSize = new System.Drawing.Size(602, 292);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "frmMessage";
+            this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Muragala Password Manager";
             this.tlpMain.ResumeLayout(false);

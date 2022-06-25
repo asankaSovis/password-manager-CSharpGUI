@@ -178,9 +178,9 @@ namespace password_manager_CSharpGUI
         private void tltMain_Popup(object sender, PopupEventArgs e)
         {
             if (e.AssociatedControl == txtPlatform) // Platform Textbox
-                tltMain.ToolTipTitle = lang.get("05x0005");
+                tltMain.ToolTipTitle = lang.get("05x0004");
             else if (e.AssociatedControl == txtUsername) // Username Textbox
-                tltMain.ToolTipTitle = lang.get("05x0007");
+                tltMain.ToolTipTitle = lang.get("05x0006");
             else if (e.AssociatedControl == btnDelete) // Delete Button
                 tltMain.ToolTipTitle = lang.get("05x0002");
             else

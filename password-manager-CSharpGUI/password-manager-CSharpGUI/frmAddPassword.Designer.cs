@@ -101,7 +101,7 @@ namespace password_manager_CSharpGUI
             this.btnApply.TabIndex = 0;
             this.btnApply.Text = "Add Password";
             this.btnApply.UseVisualStyleBackColor = true;
-            this.btnApply.Click += new System.EventHandler(this.btnAdd_Click);
+            this.btnApply.Click += new System.EventHandler(this.btnApply_Click);
             // 
             // lblApply
             // 

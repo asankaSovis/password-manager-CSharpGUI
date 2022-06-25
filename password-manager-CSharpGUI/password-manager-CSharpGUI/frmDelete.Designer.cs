@@ -66,7 +66,7 @@ namespace password_manager_CSharpGUI
             this.tlpMain.RowCount = 2;
             this.tlpMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tlpMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 66F));
-            this.tlpMain.Size = new System.Drawing.Size(499, 177);
+            this.tlpMain.Size = new System.Drawing.Size(499, 182);
             this.tlpMain.TabIndex = 0;
             // 
             // tlpButtons
@@ -78,7 +78,7 @@ namespace password_manager_CSharpGUI
             this.tlpButtons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tlpButtons.Controls.Add(this.spcButton, 1, 0);
             this.tlpButtons.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tlpButtons.Location = new System.Drawing.Point(3, 114);
+            this.tlpButtons.Location = new System.Drawing.Point(3, 119);
             this.tlpButtons.Name = "tlpButtons";
             this.tlpButtons.RowCount = 1;
             this.tlpButtons.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
@@ -141,7 +141,7 @@ namespace password_manager_CSharpGUI
             this.tlpPlatform.RowCount = 1;
             this.tlpPlatform.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tlpPlatform.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 91F));
-            this.tlpPlatform.Size = new System.Drawing.Size(479, 91);
+            this.tlpPlatform.Size = new System.Drawing.Size(479, 96);
             this.tlpPlatform.TabIndex = 1;
             // 
             // tlpPlatformFields
@@ -157,7 +157,7 @@ namespace password_manager_CSharpGUI
             this.tlpPlatformFields.RowCount = 2;
             this.tlpPlatformFields.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tlpPlatformFields.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tlpPlatformFields.Size = new System.Drawing.Size(377, 85);
+            this.tlpPlatformFields.Size = new System.Drawing.Size(377, 90);
             this.tlpPlatformFields.TabIndex = 0;
             // 
             // txtPlatform
@@ -165,24 +165,26 @@ namespace password_manager_CSharpGUI
             this.txtPlatform.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtPlatform.Font = new System.Drawing.Font("Microsoft YaHei UI", 10.01739F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPlatform.Location = new System.Drawing.Point(10, 9);
+            this.txtPlatform.Location = new System.Drawing.Point(10, 12);
             this.txtPlatform.Margin = new System.Windows.Forms.Padding(10, 3, 10, 5);
             this.txtPlatform.Name = "txtPlatform";
             this.txtPlatform.ReadOnly = true;
             this.txtPlatform.Size = new System.Drawing.Size(357, 28);
             this.txtPlatform.TabIndex = 0;
+            this.txtPlatform.TabStop = false;
             // 
             // txtUsername
             // 
             this.txtUsername.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtUsername.Font = new System.Drawing.Font("Microsoft YaHei UI", 10.01739F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtUsername.Location = new System.Drawing.Point(10, 45);
+            this.txtUsername.Location = new System.Drawing.Point(10, 48);
             this.txtUsername.Margin = new System.Windows.Forms.Padding(10, 3, 10, 5);
             this.txtUsername.Name = "txtUsername";
             this.txtUsername.ReadOnly = true;
             this.txtUsername.Size = new System.Drawing.Size(357, 28);
-            this.txtUsername.TabIndex = 1;
+            this.txtUsername.TabIndex = 0;
+            this.txtUsername.TabStop = false;
             // 
             // pcbIcon
             // 
@@ -190,7 +192,7 @@ namespace password_manager_CSharpGUI
             this.pcbIcon.Location = new System.Drawing.Point(10, 10);
             this.pcbIcon.Margin = new System.Windows.Forms.Padding(10);
             this.pcbIcon.Name = "pcbIcon";
-            this.pcbIcon.Size = new System.Drawing.Size(76, 71);
+            this.pcbIcon.Size = new System.Drawing.Size(76, 76);
             this.pcbIcon.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pcbIcon.TabIndex = 1;
             this.pcbIcon.TabStop = false;
@@ -204,6 +206,7 @@ namespace password_manager_CSharpGUI
             // 
             this.tltMain.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
             this.tltMain.ToolTipTitle = "Muragala Password Manager";
+            this.tltMain.Popup += new System.Windows.Forms.PopupEventHandler(this.tltMain_Popup);
             // 
             // bgwMain
             // 
@@ -215,13 +218,13 @@ namespace password_manager_CSharpGUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(499, 177);
+            this.ClientSize = new System.Drawing.Size(499, 182);
             this.Controls.Add(this.tlpMain);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(517, 222);
+            this.MaximumSize = new System.Drawing.Size(517, 227);
             this.MinimizeBox = false;
-            this.MinimumSize = new System.Drawing.Size(517, 222);
+            this.MinimumSize = new System.Drawing.Size(517, 227);
             this.Name = "frmDelete";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Delete Password";

@@ -167,7 +167,7 @@ namespace password_manager_CSharpGUI
                 {
                     // Otherwise we set the error image, enable controls and show error
                     btnApply.Image = loading[1];
-                    if (mode)
+                    if (mode) // Edit error
                     {
                         if (taskStatus.Item2 == MuragalaLibrary.error_list.non_existent_platform)
                             tltMain.Show(lang.get("04x0049"), btnApply);
@@ -178,7 +178,7 @@ namespace password_manager_CSharpGUI
                         else
                             tltMain.Show(lang.get("04x0052"), btnApply);
                     }
-                    else
+                    else // Add error
                     {
                         if (taskStatus.Item2 == 1)
                             tltMain.Show(lang.get("04x0047"), btnApply);
@@ -216,7 +216,7 @@ namespace password_manager_CSharpGUI
         /// </summary>
         /// <param name="sender">Sender</param>
         /// <param name="e">Event Arguements</param>
-        private void btnAdd_Click(object sender, EventArgs e)
+        private void btnApply_Click(object sender, EventArgs e)
         {
             Cursor = Cursors.AppStarting; // Change the cursor
 
@@ -243,9 +243,18 @@ namespace password_manager_CSharpGUI
         /// <param name="e">Event Arguements</param>
         private void bgwAdd_DoWork(object sender, DoWorkEventArgs e)
         {
-            // Adds the password and set the status
-            int errorCode = parent.addPassword(passcode, txtPlatform.MainText, txtUsername.MainText, passwordGenerator.getPassword());
-            taskStatus = new Tuple<bool, int>(true, errorCode);
+            if (mode) // Edit
+            {
+                // Edit the password and set the status
+                int errorCode = parent.editProfile(passcode, txtPlatform.MainText, txtUsername.MainText, passwordGenerator.getPassword());
+                taskStatus = new Tuple<bool, int>(true, errorCode);
+            }
+            else // Add
+            {
+                // Adds the password and set the status
+                int errorCode = parent.addPassword(passcode, txtPlatform.MainText, txtUsername.MainText, passwordGenerator.getPassword());
+                taskStatus = new Tuple<bool, int>(true, errorCode);
+            }
         }
 
         /// <summary>

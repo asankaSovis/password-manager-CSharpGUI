@@ -65,32 +65,44 @@ namespace password_manager_CSharpGUI
             lang.selectLanguage(selectedLanguage);
             lang.loadStrings("02");
 
+            // Load buttons
+            loadButtons(buttons);
+        }
+
+        /// <summary>
+        /// Displays a message sent by another form
+        /// </summary>
+        /// <param name="parent">Parent form that called this form</param>
+        /// <param name="topic">Topic to be displayed in bold</param>
+        /// <param name="message">Message to be displayed</param>
+        /// <param name="_selectedLanguage">Language selected</param>
+        /// <param name="icon">Icon to be displayed on top left</param>
+        /// <param name="buttons">Buttons to be enabled</param>
+        public frmMessage(Form parent, string topic, string message, Image icon, string _selectedLanguage = "English", MessageBoxButtons buttons = MessageBoxButtons.OK)
+        {
+            InitializeComponent();
+
+            loadIcons(); // Loading the icons
+
+            // Title, topic, message and the selected icon
+            this.Text = parent.Text;
+            this.Icon = parent.Icon;
+            lblTitle.Text = topic;
+            lblMessage.Text = message;
+            pcbIcon.Image = icon;
+
+            selectedLanguage = _selectedLanguage; // Selected language
+
+            // Loading the strings
+            lang.loadLanguages(myLocation + "\\languages");
+            lang.selectLanguage(selectedLanguage);
+            lang.loadStrings("02");
+
             // Resizing according to the text
             this.ClientSize = new Size(this.Width, lblMessage.Location.Y + lblMessage.Height + btnOne.Height + 60);
 
-            // Enabling the buttons according to the selection of the client
-            if (buttons == MessageBoxButtons.OKCancel)
-            {
-                btnOne.Text = "Cancel";
-                btnTwo.Text = "Ok";
-                result = DialogResult.Cancel;
-                tltMain.SetToolTip(btnOne, lang.get("02x0003"));
-                tltMain.SetToolTip(btnTwo, lang.get("02x0001"));
-            }
-            else if (buttons == MessageBoxButtons.YesNo)
-            {
-                btnOne.Text = "No";
-                btnTwo.Text = "Yes";
-                result = DialogResult.No;
-                tltMain.SetToolTip(btnOne, lang.get("02x0007"));
-                tltMain.SetToolTip(btnTwo, lang.get("02x0005"));
-            }
-            else
-            {
-                btnOne.Text = "Ok";
-                btnTwo.Hide();
-                tltMain.SetToolTip(btnOne, lang.get("02x0001"));
-            }
+            // Load buttons
+            loadButtons(buttons);
         }
 
         /// <summary>
@@ -142,6 +154,37 @@ namespace password_manager_CSharpGUI
         public DialogResult getResult()
         {
             return result;
+        }
+
+        /// <summary>
+        /// Loads the buttons
+        /// </summary>
+        /// <param name="buttons">Buttons as MessageBoxButtons</param>
+        private void loadButtons(MessageBoxButtons buttons)
+        {
+            // Enabling the buttons according to the selection of the client
+            if (buttons == MessageBoxButtons.OKCancel)
+            {
+                btnOne.Text = "Cancel";
+                btnTwo.Text = "Ok";
+                result = DialogResult.Cancel;
+                tltMain.SetToolTip(btnOne, lang.get("02x0003"));
+                tltMain.SetToolTip(btnTwo, lang.get("02x0001"));
+            }
+            else if (buttons == MessageBoxButtons.YesNo)
+            {
+                btnOne.Text = "No";
+                btnTwo.Text = "Yes";
+                result = DialogResult.No;
+                tltMain.SetToolTip(btnOne, lang.get("02x0007"));
+                tltMain.SetToolTip(btnTwo, lang.get("02x0005"));
+            }
+            else
+            {
+                btnOne.Text = "Ok";
+                btnTwo.Hide();
+                tltMain.SetToolTip(btnOne, lang.get("02x0001"));
+            }
         }
 
         /// <summary>

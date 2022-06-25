@@ -436,6 +436,26 @@ namespace password_manager_CSharpGUI
         }
 
         /// <summary>
+        /// Opens the Settings form
+        /// </summary>
+        /// <param name="sender">Sender</param>
+        /// <param name="e">Event arguements</param>
+        private void btnSettings_Click(object sender, EventArgs e)
+        {
+            comingSoon();
+        }
+
+        /// <summary>
+        /// Opens the About form
+        /// </summary>
+        /// <param name="sender">Sender</param>
+        /// <param name="e">Event arguements</param>
+        private void btnAbout_Click(object sender, EventArgs e)
+        {
+            comingSoon();
+        }
+
+        /// <summary>
         /// When a tooltip is to be shown
         /// </summary>
         /// <param name="sender">Sender</param>
@@ -916,8 +936,65 @@ namespace password_manager_CSharpGUI
             // If the ID is less than the items in the listBox, it is valid
             if (ID < flpUsernames.Controls.Count)
             {
+                if (userPasscode.Item1 == "")
+                    loadPassword();
+
+                // We save the passcode to a temporary variable in case the user locks the application
+                string tempPassword = userPasscode.Item1;
+                if (!userPasscode.Item2)
+                    userPasscode = new Tuple<string, bool>("", userPasscode.Item2);
+
+                string platform = platforms[selectedItem[0]].getPlatform();
+                string username = platforms[selectedItem[0]].getUsernames()[ID].getUsername();
                 // TODO: View profile
+                frmView view = new frmView(this, tempPassword, platform, username);
+                view.ShowDialog();
+
+                if (view.getNext() == 1)
+                {
+                    editProfile(ID, view.getPassword());
+                } else if (view.getNext() == 2)
+                {
+                    deleteProfile(ID);
+                }
             }
+        }
+
+        /// <summary>
+        /// If a profile is requested to be Edited
+        /// </summary>
+        public void editProfile(int ID, string password)
+        {
+            // If the ID is less than the items in the listBox, it is valid
+            if (ID < flpUsernames.Controls.Count)
+            {
+                if (userPasscode.Item1 == "")
+                    loadPassword();
+
+                // We save the passcode to a temporary variable in case the user locks the application
+                string tempPassword = userPasscode.Item1;
+                if (!userPasscode.Item2)
+                    userPasscode = new Tuple<string, bool>("", userPasscode.Item2);
+
+                string platform = platforms[selectedItem[0]].getPlatform();
+                string username = platforms[selectedItem[0]].getUsernames()[ID].getUsername();
+
+                // Loads the add password form with mode 1 (Edit mode)
+                frmAddPassword addProfile = new frmAddPassword(this, tempPassword, true, passwordSettings, platform, username, password);
+                addProfile.ShowDialog();
+            }
+        }
+
+        /// <summary>
+        /// Loads the profile information (password and added date) from database
+        /// </summary>
+        /// <param name="password">Password</param>
+        /// <param name="platform">Platform</param>
+        /// <param name="username">Username</param>
+        /// <returns>Error as in library</returns>
+        public List<string> viewProfile(string password, string platform, string username)
+        {
+            return library.getUserInformation(password, platform, username);
         }
 
         /// <summary>
@@ -1009,6 +1086,19 @@ namespace password_manager_CSharpGUI
         public int deleteProfile(string passcode, string platform, string username)
         {
             return library.deletePassword(passcode, platform, username);
+        }
+
+        /// <summary>
+        /// Edits a profile
+        /// </summary>
+        /// <param name="passcode">Authentication passcode</param>
+        /// <param name="platform">Platform</param>
+        /// <param name="username">Username</param>
+        /// <param name="password">Password</param>
+        /// <returns>Error as in the library</returns>
+        public int editProfile(string passcode, string platform, string username, string password)
+        {
+            return library.editPassword(passcode, platform, username, password);
         }
 
         /// <summary>
@@ -1159,6 +1249,15 @@ namespace password_manager_CSharpGUI
         private void setStatusStrip(string status, Image icon)
         {
             tstStatus.Text = status; tstStatus.Image = icon;
+        }
+
+        /// <summary>
+        /// Shows a coming soon message
+        /// </summary>
+        public void comingSoon()
+        {
+            frmMessage message = new frmMessage(this, lang.get("00x0045"), lang.get("00x0046"), loadIcon("walle"), selectedLanguage);
+            message.ShowDialog();
         }
     }
 }
