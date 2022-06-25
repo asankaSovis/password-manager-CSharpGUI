@@ -34,12 +34,20 @@ namespace password_manager_CSharpGUI
             this.txtRetype = new password_manager_CSharpGUI.WatermarkTextBox();
             this.psmMain = new password_manager_CSharpGUI.PasswordStrengthMeter();
             this.tlpButtons = new System.Windows.Forms.TableLayoutPanel();
-            this.btnDone = new System.Windows.Forms.Button();
             this.chkShow = new System.Windows.Forms.CheckBox();
+            this.spcButton = new System.Windows.Forms.SplitContainer();
+            this.btnDone = new System.Windows.Forms.Button();
+            this.lblDone = new System.Windows.Forms.Label();
             this.txtType = new password_manager_CSharpGUI.WatermarkTextBox();
             this.tltMain = new System.Windows.Forms.ToolTip(this.components);
+            this.bgwMain = new System.ComponentModel.BackgroundWorker();
+            this.tmrMain = new System.Windows.Forms.Timer(this.components);
             this.tlpMain.SuspendLayout();
             this.tlpButtons.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.spcButton)).BeginInit();
+            this.spcButton.Panel1.SuspendLayout();
+            this.spcButton.Panel2.SuspendLayout();
+            this.spcButton.SuspendLayout();
             this.SuspendLayout();
             // 
             // tlpMain
@@ -68,16 +76,16 @@ namespace password_manager_CSharpGUI
             // 
             this.txtRetype.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.txtRetype.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.01739F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtRetype.ForeColor = System.Drawing.Color.Gray;
+            this.txtRetype.ForeColor = System.Drawing.Color.Black;
             this.txtRetype.Location = new System.Drawing.Point(18, 246);
             this.txtRetype.MainText = "";
             this.txtRetype.Margin = new System.Windows.Forms.Padding(8, 3, 8, 3);
             this.txtRetype.Name = "txtRetype";
             this.txtRetype.Size = new System.Drawing.Size(349, 26);
-            this.txtRetype.TabIndex = 1;
+            this.txtRetype.TabIndex = 2;
             this.txtRetype.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.txtRetype.WatermarkActive = true;
-            this.txtRetype.WatermarkText = "Enter Password";
+            this.txtRetype.WatermarkActive = false;
+            this.txtRetype.WatermarkText = "";
             this.txtRetype.TextChanged += new System.EventHandler(this.txtRetype_TextChanged);
             this.txtRetype.KeyDown += new System.Windows.Forms.KeyEventHandler(this.KeyDown);
             // 
@@ -98,8 +106,8 @@ namespace password_manager_CSharpGUI
             this.tlpButtons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 41F));
             this.tlpButtons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tlpButtons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 201F));
-            this.tlpButtons.Controls.Add(this.btnDone, 2, 0);
             this.tlpButtons.Controls.Add(this.chkShow, 0, 0);
+            this.tlpButtons.Controls.Add(this.spcButton, 2, 0);
             this.tlpButtons.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tlpButtons.Location = new System.Drawing.Point(13, 418);
             this.tlpButtons.Name = "tlpButtons";
@@ -108,18 +116,6 @@ namespace password_manager_CSharpGUI
             this.tlpButtons.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 41F));
             this.tlpButtons.Size = new System.Drawing.Size(359, 41);
             this.tlpButtons.TabIndex = 1;
-            // 
-            // btnDone
-            // 
-            this.btnDone.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnDone.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnDone.Location = new System.Drawing.Point(161, 3);
-            this.btnDone.Name = "btnDone";
-            this.btnDone.Size = new System.Drawing.Size(195, 35);
-            this.btnDone.TabIndex = 2;
-            this.btnDone.Text = "Done";
-            this.btnDone.UseVisualStyleBackColor = true;
-            this.btnDone.Click += new System.EventHandler(this.btnDone_Click);
             // 
             // chkShow
             // 
@@ -136,20 +132,61 @@ namespace password_manager_CSharpGUI
             this.chkShow.UseVisualStyleBackColor = true;
             this.chkShow.CheckedChanged += new System.EventHandler(this.chkShow_CheckedChanged);
             // 
+            // spcButton
+            // 
+            this.spcButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.spcButton.Location = new System.Drawing.Point(161, 3);
+            this.spcButton.Name = "spcButton";
+            // 
+            // spcButton.Panel1
+            // 
+            this.spcButton.Panel1.Controls.Add(this.btnDone);
+            // 
+            // spcButton.Panel2
+            // 
+            this.spcButton.Panel2.Controls.Add(this.lblDone);
+            this.spcButton.Size = new System.Drawing.Size(195, 35);
+            this.spcButton.SplitterDistance = 93;
+            this.spcButton.TabIndex = 4;
+            // 
+            // btnDone
+            // 
+            this.btnDone.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnDone.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnDone.Location = new System.Drawing.Point(0, 0);
+            this.btnDone.Name = "btnDone";
+            this.btnDone.Size = new System.Drawing.Size(93, 35);
+            this.btnDone.TabIndex = 0;
+            this.btnDone.Text = "Done";
+            this.btnDone.UseVisualStyleBackColor = true;
+            this.btnDone.Click += new System.EventHandler(this.btnDone_Click);
+            // 
+            // lblDone
+            // 
+            this.lblDone.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.lblDone.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblDone.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblDone.Location = new System.Drawing.Point(0, 0);
+            this.lblDone.Name = "lblDone";
+            this.lblDone.Size = new System.Drawing.Size(98, 35);
+            this.lblDone.TabIndex = 0;
+            this.lblDone.Text = "Done";
+            this.lblDone.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // txtType
             // 
             this.txtType.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.txtType.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.01739F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtType.ForeColor = System.Drawing.Color.Gray;
+            this.txtType.ForeColor = System.Drawing.Color.Black;
             this.txtType.Location = new System.Drawing.Point(18, 214);
             this.txtType.MainText = "";
             this.txtType.Margin = new System.Windows.Forms.Padding(8, 3, 8, 3);
             this.txtType.Name = "txtType";
             this.txtType.Size = new System.Drawing.Size(349, 26);
-            this.txtType.TabIndex = 0;
+            this.txtType.TabIndex = 1;
             this.txtType.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.txtType.WatermarkActive = true;
-            this.txtType.WatermarkText = "Enter Password";
+            this.txtType.WatermarkActive = false;
+            this.txtType.WatermarkText = "";
             this.txtType.TextChanged += new System.EventHandler(this.txtType_TextChanged);
             this.txtType.KeyDown += new System.Windows.Forms.KeyEventHandler(this.KeyDown);
             // 
@@ -158,6 +195,17 @@ namespace password_manager_CSharpGUI
             this.tltMain.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
             this.tltMain.ToolTipTitle = "Muragala Password Manager";
             this.tltMain.Popup += new System.Windows.Forms.PopupEventHandler(this.tltMain_Popup);
+            // 
+            // bgwMain
+            // 
+            this.bgwMain.WorkerReportsProgress = true;
+            this.bgwMain.WorkerSupportsCancellation = true;
+            this.bgwMain.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bgwMain_DoWork);
+            // 
+            // tmrMain
+            // 
+            this.tmrMain.Interval = 500;
+            this.tmrMain.Tick += new System.EventHandler(this.tmrMain_Tick);
             // 
             // frmSetup
             // 
@@ -178,6 +226,10 @@ namespace password_manager_CSharpGUI
             this.tlpMain.PerformLayout();
             this.tlpButtons.ResumeLayout(false);
             this.tlpButtons.PerformLayout();
+            this.spcButton.Panel1.ResumeLayout(false);
+            this.spcButton.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.spcButton)).EndInit();
+            this.spcButton.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -187,10 +239,14 @@ namespace password_manager_CSharpGUI
         private System.Windows.Forms.TableLayoutPanel tlpMain;
         private PasswordStrengthMeter psmMain;
         private System.Windows.Forms.TableLayoutPanel tlpButtons;
-        private System.Windows.Forms.Button btnDone;
         private System.Windows.Forms.CheckBox chkShow;
         private WatermarkTextBox txtType;
         private WatermarkTextBox txtRetype;
         private System.Windows.Forms.ToolTip tltMain;
+        private System.Windows.Forms.SplitContainer spcButton;
+        private System.Windows.Forms.Button btnDone;
+        private System.Windows.Forms.Label lblDone;
+        private System.ComponentModel.BackgroundWorker bgwMain;
+        private System.Windows.Forms.Timer tmrMain;
     }
 }

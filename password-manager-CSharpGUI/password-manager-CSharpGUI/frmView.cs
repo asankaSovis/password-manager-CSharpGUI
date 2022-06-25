@@ -396,5 +396,10 @@ namespace password_manager_CSharpGUI
             btnCollapse.Enabled = btnCopy.Enabled = btnDelete.Enabled = 
                 btnDone.Enabled = btnEdit.Enabled = btnVisit.Enabled = enable;
         }
+
+        private void btnLogin_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

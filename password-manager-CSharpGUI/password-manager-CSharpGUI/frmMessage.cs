@@ -98,11 +98,19 @@ namespace password_manager_CSharpGUI
             lang.selectLanguage(selectedLanguage);
             lang.loadStrings("02");
 
-            // Resizing according to the text
-            this.ClientSize = new Size(this.Width, lblMessage.Location.Y + lblMessage.Height + btnOne.Height + 60);
-
             // Load buttons
             loadButtons(buttons);
+        }
+
+        /// <summary>
+        /// Form loading
+        /// </summary>
+        /// <param name="sender">Sender</param>
+        /// <param name="e">Event arguements</param>
+        private void frmMessage_Load(object sender, EventArgs e)
+        {
+            // Resizing according to the text
+            this.ClientSize = new Size(this.Width, lblMessage.Location.Y + lblMessage.Height + btnOne.Height + 60);
         }
 
         /// <summary>

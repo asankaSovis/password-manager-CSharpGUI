@@ -497,6 +497,8 @@ namespace password_manager_CSharpGUI
 
             loadDatabase(); // Load the main password database
 
+            loadSettings(); // Load the settings
+
             Cursor = DefaultCursor; // Revert cursor
         }
 
@@ -704,47 +706,51 @@ namespace password_manager_CSharpGUI
             int error = library.loadPreference(dataLocation + "preferences.en");
 
             // If failed to load the preferences we create a new preference
-            // TODO: This section needs work
             if (error == MuragalaLibrary.error_list.preference_load_failed)
             {
-                // TODO: Must create password if password doesnt exist
-                //printf(strVals["create_new_password"]);
-
-                
-
                 frmSetup newPasscode = new frmSetup(this);
                 newPasscode.ShowDialog();
-                passcode myPasscode = new passcode((newPasscode.getPassword() != ""), newPasscode.getPassword());
 
-                try
-                {
-                    error = library.createPreference(dataLocation + "preferences.en", myPasscode.password, myPasscode.password);
-                }
-                catch (Exception e)
-                {
-                    frmMessage message = new frmMessage(this, lang.get("00x0036"), lang.get("00x0037", e.Message), selectedLanguage, MessageBoxIcon.Error, MessageBoxButtons.OK);
-                    message.ShowDialog();
-                    Environment.Exit(-1);
-                }
-
-                
-                if (error == MuragalaLibrary.error_list.success)
-                // TODO: Notify of successful password creation
-                //printf(strVals["create_new_password_success"]);
-                { tstStatus.Text = lang.get("00x0035"); tstStatus.Image = statusIcons[1]; }
+                // If we succeeded we continue
+                if (newPasscode.getStatus())
+                { tstStatus.Text = lang.get("00x0035"); tstStatus.Image = statusIcons[1]; error = MuragalaLibrary.error_list.success; }
             }
 
-            if (error == MuragalaLibrary.error_list.fail)
+            // In case the user cancelled, we show an error and exist. Same for an error
+            if (error == MuragalaLibrary.error_list.preference_load_failed)
             {
-                // TODO: Throw exception
-                //printf(strVals["fatal_error"].Replace("<l>", "Preference loading").Replace("<e>", "Could not load preference."));
+                frmMessage message = new frmMessage(this, lang.get("00x0047"), lang.get("00x0048"), selectedLanguage, MessageBoxIcon.Error, MessageBoxButtons.OK);
+                message.ShowDialog();
+                Environment.Exit(-1);
+            }
+            else if (error != MuragalaLibrary.error_list.success)
+            {
                 frmMessage message = new frmMessage(this, lang.get("00x0036"), lang.get("00x0037", "Could not load the preference file."), selectedLanguage, MessageBoxIcon.Error, MessageBoxButtons.OK);
                 message.ShowDialog();
                 Environment.Exit(-1);
             }
+        }
 
-            // Applying Preferences
+        // TODO: Need to work on the settings
+        /// <summary>
+        /// Loads the settings
+        /// </summary>
+        private void loadSettings()
+        {
+            // Colour pallette
             spcMain.BackColor = itemColourPalette[0];
+        }
+
+        /// <summary>
+        /// Creates a new preference file
+        /// </summary>
+        /// <param name="passcode">Authentication passcode</param>
+        /// <returns>Error status as in library</returns>
+        public int newPreference(string passcode)
+        {
+            passcode myPasscode = new passcode((passcode != ""), passcode);
+
+            return library.createPreference(dataLocation + "preferences.en", myPasscode.password, myPasscode.password);
         }
 
         /// <summary>

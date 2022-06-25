@@ -84,12 +84,14 @@ namespace password_manager_CSharpGUI
         {
             // The following keys are rejected: Enter, Space
             // Shows a tooltip with warning
-            Keys[] suppress = { Keys.Space, Keys.Enter };
+            Keys[] suppress = { Keys.Space };
             if (suppress.Contains(e.KeyCode))
             {
                 tltMain.Show(lang.get("03x0011"), btnLogin);
                 e.SuppressKeyPress = true;
             }
+            else if (e.KeyCode == Keys.Enter)
+                btnLogin.PerformClick();
         }
 
         /// <summary>

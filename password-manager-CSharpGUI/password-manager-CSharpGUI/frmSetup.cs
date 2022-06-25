@@ -16,6 +16,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using password_manager_CSharpLibrary;
 
 namespace password_manager_CSharpGUI
 {
@@ -28,43 +29,51 @@ namespace password_manager_CSharpGUI
         // Location of the application
         string myLocation = AppDomain.CurrentDomain.BaseDirectory;
 
+        // Parent form
+        frmMain parent = null;
+
         // Loading strings
         string selectedLanguage = "English"; // Replaced from the parent
         public LanguageManagement lang = new LanguageManagement(); // Language management
 
-        private string password = ""; // Password entered by the user
-
+        // Status of the password
+        // { Creating, Success }
+        Tuple<bool, bool> passwordStatus = new Tuple<bool, bool>(false, false);
         int passwordStrength = 0; // Strength as returned by the password
         
+        // Icons
         private Image[] icons = null; // Iconset to be used by the show/hide button { Show, Hide }
+        private Image setupIcon = null; // Icon on the Done button
+        private Image[] loading = null; // Loading animation
 
         /// <summary>
         /// Initializes the application
         /// This function will load the necessary components for the application
         /// to work
         /// </summary>
-        public frmSetup(frmMain parent)
+        public frmSetup(frmMain _parent)
         {
             InitializeComponent();
 
             loadStrings(); // Loads the strings
 
             // Loads from parent
+            parent = _parent;
             selectedLanguage = parent.selectedLanguage;
             this.Icon = parent.Icon;
 
-            psmMain.changePassword(password); // Sends an empty password to the Strength Meter to
+            psmMain.changePassword(""); // Sends an empty password to the Strength Meter to
             // update its content
 
             // Loads the icons
-            try
-            {
-                icons = new Image[] { loadIcon("show"), loadIcon("hide") };
-            } catch (Exception) { icons = new Image[] { SystemIcons.Error.ToBitmap(), SystemIcons.Error.ToBitmap() }; }
-            btnDone.Image = loadIcon("complete");
+            loadIcons();
 
             // Uncheck the show button
             chkShow.Checked = false;
+
+            // Collapse button labels
+            spcButton.Panel2Collapsed = true;
+            spcButton.Panel1Collapsed = false;
         }
 
         /// <summary>
@@ -101,10 +110,10 @@ namespace password_manager_CSharpGUI
             if (txtType.WatermarkActive)
                 passwordStrength = psmMain.changePassword(" ");
             else
-                passwordStrength = psmMain.changePassword(txtType.Text);
+                passwordStrength = psmMain.changePassword(txtType.MainText);
 
             // We enable the proceed button if both texts are the same and strength is above 1
-            btnDone.Enabled = (txtRetype.Text == txtType.Text && (passwordStrength > 1));
+            btnDone.Enabled = ((txtRetype.MainText == txtType.MainText) && (passwordStrength > 1));
 
         }
 
@@ -118,7 +127,7 @@ namespace password_manager_CSharpGUI
             txtRetype.UseSystemPasswordChar = (!chkShow.Checked && !txtRetype.WatermarkActive);
 
             // We enable the proceed button if both texts are the same and strength is above 1
-            btnDone.Enabled = ((txtRetype.Text == txtType.Text) && (passwordStrength > 1));
+            btnDone.Enabled = ((txtRetype.MainText == txtType.MainText) && (passwordStrength > 1));
         }
 
         /// <summary>
@@ -136,12 +145,104 @@ namespace password_manager_CSharpGUI
                     tltMain.ToolTipTitle = lang.get("01x0019");
                 else if (e.AssociatedControl == btnDone) // Proceed button
                     tltMain.ToolTipTitle = lang.get("01x0021");
+                else if (e.AssociatedControl == lblDone) // Proceed button Label
+                    tltMain.ToolTipTitle = lang.get("01x0021");
                 else if (e.AssociatedControl == chkShow) // Show/Hide password button
                     tltMain.ToolTipTitle = lang.get("01x0023");
                 else
                     tltMain.ToolTipTitle = e.AssociatedControl.Text; // Any other control
             }
             catch (Exception) { }
+        }
+
+        /// <summary>
+        /// When Proceed button is pressed
+        /// </summary>
+        private void btnDone_Click(object sender, EventArgs e)
+        {
+            // We set the password to the password entered by the user and close the application
+            // The reason why we do this here is because if the user did not click on proceed
+            // and closed the form in another way, we must not accept the password entered
+            if (txtType.MainText == txtRetype.MainText)
+            {
+                Cursor = Cursors.AppStarting; // Change the cursor
+
+                // Reset password status
+                passwordStatus = new Tuple<bool, bool>(false, false);
+
+                // Disable all controls
+                enable(false);
+
+                // Change to login animation
+                lblDone.Image = loading[0];
+
+                // Hide button and show fake button label
+                spcButton.Panel1Collapsed = true;
+                chkShow.Checked = false; // Hide password
+
+                bgwMain.RunWorkerAsync(); // Run BGW
+                tmrMain.Start(); // Start timer
+            }
+
+            //this.Close();
+        }
+
+        /// <summary>
+        /// Timer ticks and checks for the progress
+        /// </summary>
+        /// <param name="sender">Sender</param>
+        /// <param name="e">Event Arguements</param>
+        private void tmrMain_Tick(object sender, EventArgs e)
+        {
+            // If image of setup button is not default and status 1 is set to false
+            if ((btnDone.Image != setupIcon) && !passwordStatus.Item1)
+            {
+                // We set the default image and stop the timer
+                btnDone.Image = setupIcon;
+                tmrMain.Stop();
+
+                // If the password text is also set, we know that the setup
+                // was successful and thus we close the form
+                if (passwordStatus.Item2)
+                    this.Close();
+            }
+
+            // Everytime we run this function, we rotate the loading animation and reapply
+            // it to the fake setup button label
+            loading[0].RotateFlip(RotateFlipType.Rotate90FlipNone);
+            lblDone.Image = loading[0];
+
+            // If the first item of password status is true, we know that the background
+            // work is complete
+            if (passwordStatus.Item1)
+            {
+                // If so, we hide the button and replace it with the fake button label
+                spcButton.Panel2Collapsed = passwordStatus.Item1;
+
+                // If the item 2 is set to true, the login is successful
+                if (passwordStatus.Item2)
+                {
+                    // We set the success image on button
+                    btnDone.Image = loading[2];
+                }
+                else
+                {
+                    // Otherwise we set the error image and explicitly set the password
+                    // to be empty and enable the controls again
+                    btnDone.Image = loading[1];
+                    tltMain.Show(lang.get("01x0039"), btnDone);
+                    txtType.MainText = txtRetype.MainText = "";
+                    enable(true);
+                }
+
+                // We set the status to not working
+                passwordStatus = new Tuple<bool, bool>(false, passwordStatus.Item2);
+
+                bgwMain.CancelAsync(); // Cancel the worker just in case
+                Cursor = DefaultCursor; // Reset the cursor
+            }
+
+            this.Refresh(); // Refresh the form
         }
 
         /// <summary>
@@ -153,38 +254,28 @@ namespace password_manager_CSharpGUI
         {
             // The following keys are rejected: Enter, Space
             // Shows a tooltip with warning
-            Keys[] suppress = { Keys.Space, Keys.Enter };
+            Keys[] suppress = { Keys.Space };
             if (suppress.Contains(e.KeyCode))
             {
                 tltMain.Show(lang.get("01x0038"), btnDone);
                 e.SuppressKeyPress = true;
             }
+            else if (e.KeyCode == Keys.Enter)
+                btnDone.PerformClick();
         }
 
         /// <summary>
-        /// When Proceed button is pressed
+        /// Runs the BGW to setup authentication
         /// </summary>
-        private void btnDone_Click(object sender, EventArgs e)
+        /// <param name="sender">Sender</param>
+        /// <param name="e">Event Arguements</param>
+        private void bgwMain_DoWork(object sender, DoWorkEventArgs e)
         {
-            // We set the password to the password entered by the user and close the application
-            // The reason why we do this here is because if the user did not click on proceed
-            // and closed the form in another way, we must not accept the password entered
-            if (txtType.Text == txtRetype.Text)
-                password = txtType.Text;
-
-            this.Close();
+            passwordStatus = new Tuple<bool, bool>(true, (parent.newPreference(txtType.Text) == MuragalaLibrary.error_list.success));
         }
 
-
-
-        /// <summary>
-        /// Returns the password the user has entered
-        /// </summary>
-        /// <returns>Password as string</returns>
-        public string getPassword()
-        {
-            return password;
-        }
+        ///////////////////////////////////////////////////////////////
+        /// MISCELLANEOUS FUNCTIONS
 
         /// <summary>
         /// Loads the text strings needed
@@ -222,6 +313,26 @@ namespace password_manager_CSharpGUI
         }
 
         /// <summary>
+        /// Loads the icons
+        /// </summary>
+        private void loadIcons()
+        {
+            icons = new Image[] { loadIcon("show"), loadIcon("hide") };
+            setupIcon = btnDone.Image = loadIcon("complete");
+
+            loading = new Image[] { loadIcon("loading"), loadIcon("cross"), loadIcon("tick") };
+        }
+
+        /// <summary>
+        /// Returns the setup status
+        /// </summary>
+        /// <returns>Success (True)/Fail (False) as bool</returns>
+        public bool getStatus()
+        {
+            return passwordStatus.Item2;
+        }
+
+        /// <summary>
         /// Loads the icons from the file system
         /// </summary>
         /// <param name="names">Array of names of the icons to load</param>
@@ -235,6 +346,15 @@ namespace password_manager_CSharpGUI
             catch (Exception) { icon = SystemIcons.Error.ToBitmap(); }
 
             return icon;
+        }
+
+        /// <summary>
+        /// Enable/Disable controls
+        /// </summary>
+        /// <param name="enabled">Enable (True)/Disable (False) as bool</param>
+        private void enable(bool enabled)
+        {
+            btnDone.Enabled = chkShow.Enabled = txtType.Enabled = txtRetype.Enabled = enabled;
         }
     }
 }

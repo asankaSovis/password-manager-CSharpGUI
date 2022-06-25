@@ -188,6 +188,7 @@ namespace password_manager_CSharpGUI
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Muragala Password Manager";
+            this.Load += new System.EventHandler(this.frmMessage_Load);
             this.tlpMain.ResumeLayout(false);
             this.tlpButtons.ResumeLayout(false);
             this.tlpMessage.ResumeLayout(false);

@@ -33,7 +33,6 @@ namespace password_manager_CSharpGUI
             this.tlpMain = new System.Windows.Forms.TableLayoutPanel();
             this.tlpButtons = new System.Windows.Forms.TableLayoutPanel();
             this.btnCopy = new System.Windows.Forms.Button();
-            this.btnDone = new System.Windows.Forms.Button();
             this.tlpPlatform = new System.Windows.Forms.TableLayoutPanel();
             this.tlpPlatformFields = new System.Windows.Forms.TableLayoutPanel();
             this.txtUsername = new System.Windows.Forms.TextBox();
@@ -57,6 +56,7 @@ namespace password_manager_CSharpGUI
             this.tmrMain = new System.Windows.Forms.Timer(this.components);
             this.bgwWork = new System.ComponentModel.BackgroundWorker();
             this.tltMain = new System.Windows.Forms.ToolTip(this.components);
+            this.btnDone = new System.Windows.Forms.Button();
             this.tlpMain.SuspendLayout();
             this.tlpButtons.SuspendLayout();
             this.tlpPlatform.SuspendLayout();
@@ -126,20 +126,6 @@ namespace password_manager_CSharpGUI
             this.btnCopy.TabIndex = 1;
             this.btnCopy.UseVisualStyleBackColor = true;
             this.btnCopy.Click += new System.EventHandler(this.btnCopy_Click);
-            // 
-            // btnDone
-            // 
-            this.btnDone.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnDone.Enabled = false;
-            this.btnDone.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnDone.Location = new System.Drawing.Point(268, 10);
-            this.btnDone.Margin = new System.Windows.Forms.Padding(10);
-            this.btnDone.Name = "btnDone";
-            this.btnDone.Size = new System.Drawing.Size(215, 40);
-            this.btnDone.TabIndex = 2;
-            this.btnDone.Text = "Done";
-            this.btnDone.UseVisualStyleBackColor = true;
-            this.btnDone.Click += new System.EventHandler(this.btnDone_Click);
             // 
             // tlpPlatform
             // 
@@ -448,6 +434,20 @@ namespace password_manager_CSharpGUI
             this.tltMain.ToolTipTitle = "Mragala Password Manager";
             this.tltMain.Popup += new System.Windows.Forms.PopupEventHandler(this.tltMain_Popup);
             // 
+            // btnDone
+            // 
+            this.btnDone.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnDone.Enabled = false;
+            this.btnDone.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnDone.Location = new System.Drawing.Point(268, 10);
+            this.btnDone.Margin = new System.Windows.Forms.Padding(10);
+            this.btnDone.Name = "btnDone";
+            this.btnDone.Size = new System.Drawing.Size(215, 40);
+            this.btnDone.TabIndex = 2;
+            this.btnDone.Text = "Done";
+            this.btnDone.UseVisualStyleBackColor = true;
+            this.btnDone.Click += new System.EventHandler(this.btnDone_Click);
+            // 
             // frmView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -511,12 +511,12 @@ namespace password_manager_CSharpGUI
         private PasswordStrengthMeter psmMain;
         private System.Windows.Forms.TableLayoutPanel tlpStats;
         private System.Windows.Forms.Label lblDate;
-        private System.Windows.Forms.Button btnDone;
         private System.Windows.Forms.Timer tmrMain;
         private System.ComponentModel.BackgroundWorker bgwWork;
         private System.Windows.Forms.ToolTip tltMain;
         private System.Windows.Forms.TableLayoutPanel tlpProfile;
         private System.Windows.Forms.TextBox txtPlatform;
         private System.Windows.Forms.Button btnVisit;
+        private System.Windows.Forms.Button btnDone;
     }
 }
