@@ -42,11 +42,155 @@ namespace password_manager_CSharpGUI
         // { switch off, switch on }
         Image[] switchIcons = null;
 
+        /// <summary>
+        /// Initialize
+        /// </summary>
         public PasswordGenerator()
         {
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Loading the user control
+        /// </summary>
+        /// <param name="sender">Sender</param>
+        /// <param name="e">Event Arguements</param>
+        private void PasswordGenerator_Load(object sender, EventArgs e)
+        {
+            // Updates the slider
+            updateSlider();
+        }
+
+        /// <summary>
+        /// Mouse moved across the count label
+        /// </summary>
+        /// <param name="sender">Sender</param>
+        /// <param name="e">Event Arguements</param>
+        private void lblCount_MouseMove(object sender, MouseEventArgs e)
+        {
+            // If the left mouse button is clicked, we update the slider
+            if (e.Button == MouseButtons.Left)
+            {
+                updateLength(updateSlider());
+                this.Refresh();
+            }
+        }
+
+        /// <summary>
+        /// In case of mouse down and mouse up, we do the same thing as mouse move
+        /// to keep graphics consistent
+        /// </summary>
+        /// <param name="sender">Sender</param>
+        /// <param name="e">Event Arguements</param>
+        private void MouseEvent(object sender, MouseEventArgs e)
+        {
+            updateLength(updateSlider());
+        }
+
+        /// <summary>
+        /// When text in password text box is changed
+        /// </summary>
+        /// <param name="sender">Sender</param>
+        /// <param name="e">Event Arguements</param>
+        private void txtPassword_TextChanged(object sender, EventArgs e)
+        {
+            // Changes the password and if parent exist, we call the text
+            // changed function
+            changePassword(txtPassword.Text);
+
+            if (parent != null)
+                parent.MyTextChanged(null, null);
+        }
+
+        /// <summary>
+        /// Reload button clicked
+        /// </summary>
+        /// <param name="sender">Sender</param>
+        /// <param name="e">Event Arguements</param>
+        private void btnReload_Click(object sender, EventArgs e)
+        {
+            refreshPassword(); // We refresh the password
+        }
+
+        /// <summary>
+        /// Suppress the keypresses of invalid characters
+        /// </summary>
+        /// <param name="sender">Sender</param>
+        /// <param name="e">Arguements</param>
+        private new void KeyDown(object sender, KeyEventArgs e)
+        {
+            // The following keys are rejected: Enter, Space
+            // Shows a tooltip with warning
+            Keys[] suppress = { Keys.Space, Keys.Enter };
+            if (suppress.Contains(e.KeyCode))
+            {
+                //tltMain.Show(lang.get("03x0011"), btnAdd);
+                e.SuppressKeyPress = true;
+            }
+        }
+
+        /// <summary>
+        /// When a tooltip is to be shown
+        /// </summary>
+        /// <param name="sender">Sender</param>
+        /// <param name="e">Event Arguements</param>
+        private void tltMain_Popup(object sender, PopupEventArgs e)
+        {
+            if (e.AssociatedControl == btnReload) // Reload button title
+                tltMain.ToolTipTitle = text[0];
+            else if (e.AssociatedControl == txtPassword) // Password
+                tltMain.ToolTipTitle = text[1];
+            else if (e.AssociatedControl == lblCount) // Count label
+                tltMain.ToolTipTitle = text[2];
+            else if (e.AssociatedControl == lblLowercase) // Lowercase
+                tltMain.ToolTipTitle = text[3];
+            else if (e.AssociatedControl == chkUppercase) // Uppercase
+                tltMain.ToolTipTitle = text[4];
+            else if (e.AssociatedControl == chkNumbers) // Numbers
+                tltMain.ToolTipTitle = text[5];
+            else if (e.AssociatedControl == chkSymbols) // Symbols
+                tltMain.ToolTipTitle = text[6];
+            else if (e.AssociatedControl == lblStrength) // Strength label
+                tltMain.ToolTipTitle = text[7];
+            else
+                tltMain.ToolTipTitle = e.AssociatedControl.Text; // Any other control
+        }
+
+        /// <summary>
+        /// Checked changed of each check box
+        /// </summary>
+        /// <param name="sender">Sender</param>
+        /// <param name="e">Event Arguements</param>
+        private void CheckedChanged(object sender, EventArgs e)
+        {
+            // We change the button images of each checkbox accordingly
+            if (chkUppercase.Checked)
+                chkUppercase.Image = switchIcons[1];
+            else
+                chkUppercase.Image = switchIcons[0];
+
+            if (chkNumbers.Checked)
+                chkNumbers.Image = switchIcons[1];
+            else
+                chkNumbers.Image = switchIcons[0];
+
+            if (chkSymbols.Checked)
+                chkSymbols.Image = switchIcons[1];
+            else
+                chkSymbols.Image = switchIcons[0];
+
+            refreshPassword(); // Password is also refreshed
+        }
+
+        ///////////////////////////////////////////////////////////////
+        /// INITIALIZE FUNCTIONS
+
+        /// <summary>
+        /// Initializes the settings
+        /// </summary>
+        /// <param name="_parent">Parent form</param>
+        /// <param name="refreshIcon">Refresh icon</param>
+        /// <param name="_switchIcons">Switch icons</param>
         public void initialize(frmAddPassword _parent, Image refreshIcon, Image[] _switchIcons)
         {
             parent = _parent;
@@ -56,8 +200,13 @@ namespace password_manager_CSharpGUI
             lblLowercase.Image = switchIcons[1];
         }
 
+        /// <summary>
+        /// Loads the text strings
+        /// </summary>
+        /// <param name="_text">String array</param>
         public void loadStrings(string[] _text)
         {
+            /// Tooltips and watermark
             txtPassword.ApplyWatermark(_text[0]);
             text[0] = _text[1];
             tltMain.SetToolTip(btnReload, _text[2]);
@@ -93,6 +242,10 @@ namespace password_manager_CSharpGUI
             text[21] = _text[30]; // Very Strong
         }
 
+        /// <summary>
+        /// Refreshes the settings { length, uppercase, numbers, symbols}
+        /// </summary>
+        /// <param name="settings">Settings</param>
         public void refreshSettings(Tuple<int, bool, bool, bool> settings)
         {
             passwordLength = settings.Item1;
@@ -101,26 +254,46 @@ namespace password_manager_CSharpGUI
             chkSymbols.Checked = settings.Item3;
         }
 
+        /// <summary>
+        /// Reload a new password
+        /// </summary>
         public void refreshPassword()
         {
+            // Gets a new random password from the parent
             txtPassword.MainText = parent.getRandomPassword(passwordLength, chkUppercase.Checked, chkNumbers.Checked, chkSymbols.Checked);
         }
 
+        /// <summary>
+        /// Sets the password in the generator
+        /// </summary>
+        /// <param name="password">Password</param>
         public void setPassword(string password)
         {
             txtPassword.MainText = password;
         }
 
+        /// <summary>
+        /// Returns the password set
+        /// </summary>
+        /// <returns>Password as string</returns>
         public string getPassword()
         {
             return txtPassword.MainText;
         }
 
+        /// <summary>
+        /// Updates the length of the password
+        /// </summary>
         private void lengthUpdated()
         {
+            // In this case we just create a new random password from parent
             txtPassword.MainText = parent.getRandomPassword(passwordLength, chkUppercase.Checked, chkNumbers.Checked, chkSymbols.Checked);
         }
 
+        /// <summary>
+        /// Updates the slider according to the new value
+        /// </summary>
+        /// <returns>The new slider value { value, min, max }</returns>
         public Tuple<int, int, int> updateSlider()
         {
             if (lblCount.Image != null)
@@ -199,62 +372,19 @@ namespace password_manager_CSharpGUI
             return new Tuple<int, int, int>(sliderPosition, 0, width);
         }
 
+        /// <summary>
+        /// Updates the length of the password
+        /// </summary>
+        /// <param name="sliderValue">Value on the slider</param>
         private void updateLength(Tuple<int, int, int> sliderValue)
         {
+            // We map the values on the slider to the min and max of password lengths and change
+            // the password length. Then we call the lengthUpdated function
             int tempLength = passwordLength;
             passwordLength = Map(sliderValue.Item1, sliderValue.Item2, sliderValue.Item3, lengthRange[0], lengthRange[1]);
 
             if (tempLength != passwordLength)
                 lengthUpdated();
-        }
-
-        private static int Map(int value, int fromLow, int fromHigh, int toLow, int toHigh)
-        {
-            return (value - fromLow) * (toHigh - toLow) / (fromHigh - fromLow) + toLow;
-        }
-
-        private void lblCount_MouseMove(object sender, MouseEventArgs e)
-        {
-            if (e.Button == MouseButtons.Left)
-            {
-                updateLength(updateSlider());
-                this.Refresh();
-            }
-        }
-
-        private void MouseEvent(object sender, MouseEventArgs e)
-        {
-            updateLength(updateSlider());
-        }
-
-        /// <summary>
-        /// Returns the string with singular form or plural form
-        /// </summary>
-        /// <param name="count">The value</param>
-        /// <param name="singularForm">Singular form of the string</param>
-        /// /// <param name="pluralForm">PLural form of the string</param>
-        /// <returns></returns>
-        private string countString(int count, string singularForm, string pluralForm)
-        {
-            // If the value is one, we concatanate and return the singular form,
-            // otherwise the plural form
-            if (count == 1)
-                //return LanguageManagement.parse(text[24], new string[] { count.ToString(), singularForm });
-                return LanguageManagement.parse(text[8], new string[] { count.ToString(), singularForm });
-            else
-                //return LanguageManagement.parse(text[24], new string[] { count.ToString(), pluralForm });
-                return LanguageManagement.parse(text[8], new string[] { count.ToString(), pluralForm });
-        }
-
-        private void PasswordGenerator_Load(object sender, EventArgs e)
-        {
-            updateSlider();
-        }
-
-        private void txtPassword_TextChanged(object sender, EventArgs e)
-        {
-            changePassword(txtPassword.Text);
-            parent.MyTextChanged(null, null);
         }
 
         /// <summary>
@@ -391,71 +521,40 @@ namespace password_manager_CSharpGUI
             { updateLabel.BackColor = colourPalette[0]; updateLabel.ForeColor = Color.White; }
         }
 
+        ///////////////////////////////////////////////////////////////
+        /// MISCELLANEOUS FUNCTIONS
+
         /// <summary>
-        /// When a tooltip is to be shown
+        /// Maps a value
         /// </summary>
-        /// <param name="sender">Sender</param>
-        /// <param name="e">Event Arguements</param>
-        private void tltMain_Popup(object sender, PopupEventArgs e)
+        /// <param name="value">Source Value</param>
+        /// <param name="fromLow">Lowest point of source</param>
+        /// <param name="fromHigh">Highest point of source</param>
+        /// <param name="toLow">Lowest point of destination</param>
+        /// <param name="toHigh">Highest point of destination</param>
+        /// <returns>Mapped value as integer</returns>
+        private static int Map(int value, int fromLow, int fromHigh, int toLow, int toHigh)
         {
-            if (e.AssociatedControl == btnReload) // Reload button title
-                tltMain.ToolTipTitle = text[0];
-            else if (e.AssociatedControl == txtPassword) // Password
-                tltMain.ToolTipTitle = text[1];
-            else if (e.AssociatedControl == lblCount) // Count label
-                tltMain.ToolTipTitle = text[2];
-            else if (e.AssociatedControl == lblLowercase) // Lowercase
-                tltMain.ToolTipTitle = text[3];
-            else if (e.AssociatedControl == chkUppercase) // Uppercase
-                tltMain.ToolTipTitle = text[4];
-            else if (e.AssociatedControl == chkNumbers) // Numbers
-                tltMain.ToolTipTitle = text[5];
-            else if (e.AssociatedControl == chkSymbols) // Symbols
-                tltMain.ToolTipTitle = text[6];
-            else if (e.AssociatedControl == lblStrength) // Strength label
-                tltMain.ToolTipTitle = text[7];
-            else
-                tltMain.ToolTipTitle = e.AssociatedControl.Text; // Any other control
-        }
-
-        private void CheckedChanged(object sender, EventArgs e)
-        {
-            if (chkUppercase.Checked)
-                chkUppercase.Image = switchIcons[1];
-            else
-                chkUppercase.Image = switchIcons[0];
-            if (chkNumbers.Checked)
-                chkNumbers.Image = switchIcons[1];
-            else
-                chkNumbers.Image = switchIcons[0];
-            if (chkSymbols.Checked)
-                chkSymbols.Image = switchIcons[1];
-            else
-                chkSymbols.Image = switchIcons[0];
-
-            refreshPassword();
-        }
-
-        private void btnReload_Click(object sender, EventArgs e)
-        {
-            refreshPassword();
+            return (value - fromLow) * (toHigh - toLow) / (fromHigh - fromLow) + toLow;
         }
 
         /// <summary>
-        /// Suppress the keypresses of invalid characters
+        /// Returns the string with singular form or plural form
         /// </summary>
-        /// <param name="sender">Sender</param>
-        /// <param name="e">Arguements</param>
-        private new void KeyDown(object sender, KeyEventArgs e)
+        /// <param name="count">The value</param>
+        /// <param name="singularForm">Singular form of the string</param>
+        /// /// <param name="pluralForm">PLural form of the string</param>
+        /// <returns></returns>
+        private string countString(int count, string singularForm, string pluralForm)
         {
-            // The following keys are rejected: Enter, Space
-            // Shows a tooltip with warning
-            Keys[] suppress = { Keys.Space, Keys.Enter };
-            if (suppress.Contains(e.KeyCode))
-            {
-                //tltMain.Show(lang.get("03x0011"), btnAdd);
-                e.SuppressKeyPress = true;
-            }
+            // If the value is one, we concatanate and return the singular form,
+            // otherwise the plural form
+            if (count == 1)
+                //return LanguageManagement.parse(text[24], new string[] { count.ToString(), singularForm });
+                return LanguageManagement.parse(text[8], new string[] { count.ToString(), singularForm });
+            else
+                //return LanguageManagement.parse(text[24], new string[] { count.ToString(), pluralForm });
+                return LanguageManagement.parse(text[8], new string[] { count.ToString(), pluralForm });
         }
     }
 }

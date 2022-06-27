@@ -225,8 +225,8 @@ namespace password_manager_CSharpGUI
             this.txtPassword.Size = new System.Drawing.Size(580, 28);
             this.txtPassword.TabIndex = 1;
             this.txtPassword.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.txtPassword.WatermarkActive = true;
-            this.txtPassword.WatermarkText = "Type here";
+            this.txtPassword.WatermarkActive = false;
+            this.txtPassword.WatermarkText = "";
             this.txtPassword.TextChanged += new System.EventHandler(this.txtPassword_TextChanged);
             this.txtPassword.KeyDown += new System.Windows.Forms.KeyEventHandler(this.KeyDown);
             // 

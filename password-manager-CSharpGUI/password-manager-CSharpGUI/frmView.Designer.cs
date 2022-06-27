@@ -33,6 +33,7 @@ namespace password_manager_CSharpGUI
             this.tlpMain = new System.Windows.Forms.TableLayoutPanel();
             this.tlpButtons = new System.Windows.Forms.TableLayoutPanel();
             this.btnCopy = new System.Windows.Forms.Button();
+            this.btnDone = new System.Windows.Forms.Button();
             this.tlpPlatform = new System.Windows.Forms.TableLayoutPanel();
             this.tlpPlatformFields = new System.Windows.Forms.TableLayoutPanel();
             this.txtUsername = new System.Windows.Forms.TextBox();
@@ -56,7 +57,6 @@ namespace password_manager_CSharpGUI
             this.tmrMain = new System.Windows.Forms.Timer(this.components);
             this.bgwWork = new System.ComponentModel.BackgroundWorker();
             this.tltMain = new System.Windows.Forms.ToolTip(this.components);
-            this.btnDone = new System.Windows.Forms.Button();
             this.tlpMain.SuspendLayout();
             this.tlpButtons.SuspendLayout();
             this.tlpPlatform.SuspendLayout();
@@ -127,6 +127,20 @@ namespace password_manager_CSharpGUI
             this.btnCopy.UseVisualStyleBackColor = true;
             this.btnCopy.Click += new System.EventHandler(this.btnCopy_Click);
             // 
+            // btnDone
+            // 
+            this.btnDone.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnDone.Enabled = false;
+            this.btnDone.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnDone.Location = new System.Drawing.Point(268, 10);
+            this.btnDone.Margin = new System.Windows.Forms.Padding(10);
+            this.btnDone.Name = "btnDone";
+            this.btnDone.Size = new System.Drawing.Size(215, 40);
+            this.btnDone.TabIndex = 2;
+            this.btnDone.Text = "Done";
+            this.btnDone.UseVisualStyleBackColor = true;
+            this.btnDone.Click += new System.EventHandler(this.btnDone_Click);
+            // 
             // tlpPlatform
             // 
             this.tlpPlatform.ColumnCount = 2;
@@ -196,11 +210,11 @@ namespace password_manager_CSharpGUI
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtPlatform.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtPlatform.Font = new System.Drawing.Font("Microsoft YaHei UI", 10.01739F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPlatform.Location = new System.Drawing.Point(10, 6);
-            this.txtPlatform.Margin = new System.Windows.Forms.Padding(10, 3, 0, 5);
+            this.txtPlatform.Location = new System.Drawing.Point(7, 6);
+            this.txtPlatform.Margin = new System.Windows.Forms.Padding(7, 3, 0, 5);
             this.txtPlatform.Name = "txtPlatform";
             this.txtPlatform.ReadOnly = true;
-            this.txtPlatform.Size = new System.Drawing.Size(321, 28);
+            this.txtPlatform.Size = new System.Drawing.Size(324, 28);
             this.txtPlatform.TabIndex = 1;
             this.txtPlatform.TabStop = false;
             // 
@@ -433,20 +447,6 @@ namespace password_manager_CSharpGUI
             this.tltMain.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
             this.tltMain.ToolTipTitle = "Mragala Password Manager";
             this.tltMain.Popup += new System.Windows.Forms.PopupEventHandler(this.tltMain_Popup);
-            // 
-            // btnDone
-            // 
-            this.btnDone.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnDone.Enabled = false;
-            this.btnDone.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnDone.Location = new System.Drawing.Point(268, 10);
-            this.btnDone.Margin = new System.Windows.Forms.Padding(10);
-            this.btnDone.Name = "btnDone";
-            this.btnDone.Size = new System.Drawing.Size(215, 40);
-            this.btnDone.TabIndex = 2;
-            this.btnDone.Text = "Done";
-            this.btnDone.UseVisualStyleBackColor = true;
-            this.btnDone.Click += new System.EventHandler(this.btnDone_Click);
             // 
             // frmView
             // 

@@ -44,7 +44,7 @@ namespace password_manager_CSharpGUI
         }
 
         /// <summary>
-        /// Loading the ist of languages
+        /// Loading the list of languages
         /// Loads the list of available languages and their details from the
         /// languages.json file
         /// </summary>
@@ -112,7 +112,7 @@ namespace password_manager_CSharpGUI
             // if it matches the formID. If so we add it to the main variable
             try
             {
-                string json = System.IO.File.ReadAllText(location + "\\" + languageList[selectedLanguage][2]);
+                string json = System.IO.File.ReadAllText(location + "\\" + languageList[selectedLanguage][3]);
                 loadedStrings = JsonSerializer.Deserialize<Dictionary<string, string>>(json);
 
                 foreach (var item in loadedStrings.Keys)

@@ -106,8 +106,8 @@ namespace password_manager_CSharpGUI
             initialize(); // Initializes the application
 
             // TODO: Remove dummy loading when done
-            //loadDummies(); // Loads dummy data to the variables
-            loadData();
+            loadDummies(); // Loads dummy data to the variables
+            //loadData();
         }
 
         /// <summary>
@@ -442,7 +442,15 @@ namespace password_manager_CSharpGUI
         /// <param name="e">Event arguements</param>
         private void btnSettings_Click(object sender, EventArgs e)
         {
-            comingSoon();
+            if (userPasscode.Item1 == "")
+                loadPassword();
+
+            // If the password was not entered, we skip after showing an error
+            if (userPasscode.Item1 != "")
+            {
+                frmSettings settings = new frmSettings(this, dataLocation);
+                settings.ShowDialog();
+            }
         }
 
         /// <summary>

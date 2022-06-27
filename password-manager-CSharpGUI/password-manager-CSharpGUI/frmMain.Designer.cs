@@ -44,7 +44,6 @@ namespace password_manager_CSharpGUI
             this.flpUsernames = new System.Windows.Forms.FlowLayoutPanel();
             this.tlpSearch = new System.Windows.Forms.TableLayoutPanel();
             this.btnReload = new System.Windows.Forms.Button();
-            this.txtSearch = new password_manager_CSharpGUI.WatermarkTextBox();
             this.tlpBottom = new System.Windows.Forms.TableLayoutPanel();
             this.btnAdd = new System.Windows.Forms.Button();
             this.btnSettings = new System.Windows.Forms.Button();
@@ -53,6 +52,7 @@ namespace password_manager_CSharpGUI
             this.bgwLoad = new System.ComponentModel.BackgroundWorker();
             this.tmrMain = new System.Windows.Forms.Timer(this.components);
             this.tltMain = new System.Windows.Forms.ToolTip(this.components);
+            this.txtSearch = new password_manager_CSharpGUI.WatermarkTextBox();
             this.stsMain.SuspendLayout();
             this.tlpMain.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pcbBanner)).BeginInit();
@@ -86,26 +86,26 @@ namespace password_manager_CSharpGUI
             this.tstStatus.AutoSize = false;
             this.tstStatus.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.tstStatus.Name = "tstStatus";
-            this.tstStatus.Size = new System.Drawing.Size(555, 22);
-            this.tstStatus.Spring = true;
+            this.tstStatus.Size = new System.Drawing.Size(400, 22);
             this.tstStatus.Text = "No Platforms...";
             this.tstStatus.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // tstProgress
             // 
             this.tstProgress.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.tstProgress.AutoSize = false;
             this.tstProgress.Margin = new System.Windows.Forms.Padding(1, 5, 1, 5);
             this.tstProgress.Name = "tstProgress";
-            this.tstProgress.Size = new System.Drawing.Size(150, 18);
+            this.tstProgress.Size = new System.Drawing.Size(79, 18);
             this.tstProgress.Style = System.Windows.Forms.ProgressBarStyle.Marquee;
             this.tstProgress.Visible = false;
             // 
             // tstCount
             // 
-            this.tstCount.AutoSize = false;
+            this.tstCount.BorderSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.Left;
+            this.tstCount.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.tstCount.Name = "tstCount";
-            this.tstCount.Size = new System.Drawing.Size(110, 22);
+            this.tstCount.Size = new System.Drawing.Size(37, 22);
+            this.tstCount.Spring = true;
             this.tstCount.Text = "0 Passwords";
             // 
             // tlpMain
@@ -245,19 +245,6 @@ namespace password_manager_CSharpGUI
             this.btnReload.UseVisualStyleBackColor = true;
             this.btnReload.Click += new System.EventHandler(this.btnReload_Click);
             // 
-            // txtSearch
-            // 
-            this.txtSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtSearch.ForeColor = System.Drawing.Color.Black;
-            this.txtSearch.Location = new System.Drawing.Point(44, 9);
-            this.txtSearch.MainText = "";
-            this.txtSearch.Name = "txtSearch";
-            this.txtSearch.Size = new System.Drawing.Size(499, 22);
-            this.txtSearch.TabIndex = 3;
-            this.txtSearch.WatermarkActive = true;
-            this.txtSearch.WatermarkText = "Type here";
-            this.txtSearch.TextChanged += new System.EventHandler(this.txtSearch_TextChanged);
-            // 
             // tlpBottom
             // 
             this.tlpBottom.ColumnCount = 6;
@@ -338,6 +325,19 @@ namespace password_manager_CSharpGUI
             this.tltMain.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
             this.tltMain.ToolTipTitle = "Muragala Password Manager";
             this.tltMain.Popup += new System.Windows.Forms.PopupEventHandler(this.tltMain_Popup);
+            // 
+            // txtSearch
+            // 
+            this.txtSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtSearch.ForeColor = System.Drawing.Color.Black;
+            this.txtSearch.Location = new System.Drawing.Point(44, 9);
+            this.txtSearch.MainText = "";
+            this.txtSearch.Name = "txtSearch";
+            this.txtSearch.Size = new System.Drawing.Size(499, 22);
+            this.txtSearch.TabIndex = 3;
+            this.txtSearch.WatermarkActive = true;
+            this.txtSearch.WatermarkText = "Type here";
+            this.txtSearch.TextChanged += new System.EventHandler(this.txtSearch_TextChanged);
             // 
             // frmMain
             // 

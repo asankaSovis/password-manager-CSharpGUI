@@ -171,8 +171,8 @@ namespace password_manager_CSharpGUI
             this.txtUsername.Name = "txtUsername";
             this.txtUsername.Size = new System.Drawing.Size(357, 28);
             this.txtUsername.TabIndex = 2;
-            this.txtUsername.WatermarkActive = true;
-            this.txtUsername.WatermarkText = "Type here";
+            this.txtUsername.WatermarkActive = false;
+            this.txtUsername.WatermarkText = "";
             this.txtUsername.TextChanged += new System.EventHandler(this.MyTextChanged);
             // 
             // txtPlatform
@@ -188,7 +188,7 @@ namespace password_manager_CSharpGUI
             this.txtPlatform.Size = new System.Drawing.Size(357, 28);
             this.txtPlatform.TabIndex = 1;
             this.txtPlatform.WatermarkActive = false;
-            this.txtPlatform.WatermarkText = "Type here";
+            this.txtPlatform.WatermarkText = "";
             this.txtPlatform.TextChanged += new System.EventHandler(this.MyTextChanged);
             // 
             // pcbIcon
