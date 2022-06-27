@@ -52,6 +52,9 @@ namespace password_manager_CSharpGUI
         // Settings sent by parent
         Tuple<int, bool, bool, bool> settings = null;
 
+        // Copy when exit
+        bool copy = false;
+
         /// <summary>
         /// Initialize the form, add strings, icons and load settingss
         /// </summary>
@@ -62,7 +65,7 @@ namespace password_manager_CSharpGUI
         /// <param name="platform">Platform</param>
         /// <param name="username">Username</param>
         /// <param name="password">Password</param>
-        public frmAddPassword(frmMain _parent, string _passcode, bool _mode, Tuple<int, bool, bool, bool> _settings, string platform = "", string username = "", string password = "")
+        public frmAddPassword(frmMain _parent, string _passcode, bool _mode, Tuple<int, bool, bool, bool> _settings, bool _copy = false, string platform = "", string username = "", string password = "")
         {
             InitializeComponent();
 
@@ -70,6 +73,7 @@ namespace password_manager_CSharpGUI
             mode = _mode;
             passcode = _passcode;
             settings = _settings;
+            copy = _copy;
 
             this.Icon = parent.Icon;
 
@@ -141,7 +145,12 @@ namespace password_manager_CSharpGUI
                 // If the status is set to 0 (Success), we know that the add/edit
                 // was successful and thus we close the form
                 if (taskStatus.Item2 == 0)
+                {
+                    if (copy)
+                        Clipboard.SetText(passwordGenerator.getPassword());
+
                     this.Close();
+                }
             }
 
             // Everytime we run this function, we rotate the loading animation and reapply

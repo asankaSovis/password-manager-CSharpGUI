@@ -38,7 +38,6 @@ namespace password_manager_CSharpGUI
 
         // Settings management
         SettingsManagement set = new SettingsManagement();
-        List<string> settings = new List<string>();
 
         // Length of a password
         int passwordLength = 8;
@@ -70,11 +69,19 @@ namespace password_manager_CSharpGUI
             dataLocation = _dataLocation;
             this.Icon = parent.Icon;
 
+            // Default checkbox settings
+            chkCache.Uncheck();
+            chkCopy.Uncheck();
+            chkKeepLogged.Uncheck();
+            chkNumbers.Check();
+            chkSymbols.Check();
+            chkUppercase.Check();
+
             loadLanguages(); // Load the language list
             loadStrings(); // Load the text data
 
             // Load the settings and update dials
-            settings = set.loadSettings(dataLocation).ToList();
+            set.loadSettings(dataLocation).ToList();
             loadSettings();
             updateSlider();
 
@@ -88,35 +95,10 @@ namespace password_manager_CSharpGUI
         /// <param name="e">Event Arguements</param>
         private void btnApply_Click(object sender, EventArgs e)
         {
-            // Language
-            set.setSetting("07x0000", selectedLanguage);
-
-            // Keep me logged
-            set.setSetting("07x0001", chkKeepLogged.CheckState().ToString());
-
-            // Password length
-            set.setSetting("07x0002", passwordLength.ToString());
-
-            // Uppercase
-            set.setSetting("07x0003", chkUppercase.CheckState().ToString());
-
-            // Numbers
-            set.setSetting("07x0004", chkNumbers.CheckState().ToString());
-
-            // Symbols
-            set.setSetting("07x0005", chkSymbols.CheckState().ToString());
-
-            // Copy
-            set.setSetting("07x0006", chkCopy.CheckState().ToString());
-
-            // Location
-            set.setSetting("07x0007", txtLocation.Text.ToString());
-
-            // Saving the settings
-            set.saveSettings();
+            saveSettings();
 
             // Notify user
-            frmMessage message = new frmMessage(this, lang.get("07x0081"), lang.get("07x0082"), selectedLanguage);
+            frmMessage message = new frmMessage(this, lang.get("07x0077"), lang.get("07x0078"), selectedLanguage);
             message.ShowDialog();
 
             this.Close();
@@ -146,7 +128,7 @@ namespace password_manager_CSharpGUI
         private void btnExportCredential_Click(object sender, EventArgs e)
         {
             // Creating the login form and setting up the password
-            frmLogin login = new frmLogin(parent);
+            frmLogin login = new frmLogin(parent, false);
             login.ShowDialog();
             bool success = (login.getPassword().Item1 != "");
 
@@ -203,7 +185,7 @@ namespace password_manager_CSharpGUI
         private void btnResetCredentials_Click(object sender, EventArgs e)
         {
             // Creating the login form and setting up the password
-            frmLogin login = new frmLogin(parent);
+            frmLogin login = new frmLogin(parent, false);
             login.ShowDialog();
             bool success = (login.getPassword().Item1 != "");
 
@@ -248,7 +230,7 @@ namespace password_manager_CSharpGUI
         private void btnExportDatabase_Click(object sender, EventArgs e)
         {
             // Creating the login form and setting up the password
-            frmLogin login = new frmLogin(parent);
+            frmLogin login = new frmLogin(parent, false);
             login.ShowDialog();
             
             // If login is successful we continue
@@ -300,7 +282,7 @@ namespace password_manager_CSharpGUI
         private void btnClearDatabase_Click(object sender, EventArgs e)
         {
             // Creating the login form and setting up the password
-            frmLogin login = new frmLogin(parent);
+            frmLogin login = new frmLogin(parent, false);
             login.ShowDialog();
 
             // If login successful, we continue
@@ -347,7 +329,7 @@ namespace password_manager_CSharpGUI
         private void btnBackup_Click(object sender, EventArgs e)
         {
             // Creating the login form and setting up the password
-            frmLogin login = new frmLogin(parent);
+            frmLogin login = new frmLogin(parent, false);
             login.ShowDialog();
 
             // If login successful we proceed
@@ -461,7 +443,7 @@ namespace password_manager_CSharpGUI
         /// Updates the slider
         /// </summary>
         /// <returns>Updated values as tuple { value, min, max }</returns>
-        public Tuple<int, int, int> updateSlider()
+        private Tuple<int, int, int> updateSlider()
         {
             // Clear the image
             if (lblCount.Image != null)
@@ -556,7 +538,7 @@ namespace password_manager_CSharpGUI
         /// <summary>
         /// Loads all the strings
         /// </summary>
-        public void loadStrings()
+        private void loadStrings()
         {
             // Loading the strings
             lang.loadLanguages(myLocation + "languages");
@@ -662,9 +644,14 @@ namespace password_manager_CSharpGUI
         /// </summary>
         private void loadSettings()
         {
+            if (set.getSettings().Count() != 8)
+                saveSettings();
+
             // Language
             if (set.getSetting("07x0000") != null)
+            {
                 selectedLanguage = set.getSetting("07x0000");
+            }
 
             foreach (LanguageItem item in flpLanguages.Controls)
             {
@@ -701,6 +688,49 @@ namespace password_manager_CSharpGUI
                 passwordLength = length;
 
             updateLength(new Tuple<int, int, int>(passwordLength, lengthRange[0], lengthRange[1]));
+        }
+
+        /// <summary>
+        /// Saves the settings
+        /// </summary>
+        public void saveSettings()
+        {
+            // Language
+            set.setSetting("07x0000", selectedLanguage);
+
+            // Keep me logged
+            set.setSetting("07x0001", chkKeepLogged.CheckState().ToString());
+
+            // Password length
+            set.setSetting("07x0002", passwordLength.ToString());
+
+            // Uppercase
+            set.setSetting("07x0003", chkUppercase.CheckState().ToString());
+
+            // Numbers
+            set.setSetting("07x0004", chkNumbers.CheckState().ToString());
+
+            // Symbols
+            set.setSetting("07x0005", chkSymbols.CheckState().ToString());
+
+            // Copy
+            set.setSetting("07x0006", chkCopy.CheckState().ToString());
+
+            // Location
+            set.setSetting("07x0007", txtLocation.Text.ToString());
+
+            // Saving the settings
+            set.saveSettings();
+        }
+
+        /// <summary>
+        /// Returns the setting from an ID
+        /// </summary>
+        /// <param name="ID">ID of the setting</param>
+        /// <returns>Value as string</returns>
+        public string getSetting(string ID)
+        {
+            return set.getSetting(ID);
         }
 
         /// <summary>

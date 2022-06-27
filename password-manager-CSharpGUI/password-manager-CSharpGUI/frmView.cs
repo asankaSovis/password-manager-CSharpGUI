@@ -50,6 +50,9 @@ namespace password_manager_CSharpGUI
 
         const int spcPanelHeight = 199; // Fixed height of the Advanced panel
 
+        // Copy when exit
+        bool copy = false;
+
         /// <summary>
         /// View form that displays the password
         /// </summary>
@@ -57,12 +60,14 @@ namespace password_manager_CSharpGUI
         /// <param name="_passcode">Authentication passcode</param>
         /// <param name="platform">Platform</param>
         /// <param name="username">Username</param>
-        public frmView(frmMain _parent, string _passcode, string platform, string username)
+        /// <param name="copy">Copy when exit</param>
+        public frmView(frmMain _parent, string _passcode, string platform, string username, bool _copy)
         {
             InitializeComponent();
 
             parent = _parent;
             passcode = _passcode;
+            copy = _copy;
 
             this.Icon = parent.Icon;
 
@@ -282,6 +287,7 @@ namespace password_manager_CSharpGUI
         /// <param name="e">Event Arguements</param>
         private void btnDone_Click(object sender, EventArgs e)
         {
+            Clipboard.SetText(txtPassword.Text);
             this.Close(); // Simply close the form
         }
 
@@ -395,11 +401,6 @@ namespace password_manager_CSharpGUI
         {
             btnCollapse.Enabled = btnCopy.Enabled = btnDelete.Enabled = 
                 btnDone.Enabled = btnEdit.Enabled = btnVisit.Enabled = enable;
-        }
-
-        private void btnLogin_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

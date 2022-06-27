@@ -92,7 +92,11 @@ namespace password_manager_CSharpGUI
         // TODO: Make blank before pushing
         Tuple<string, bool> userPasscode = new Tuple<string, bool>("", false);
 
+        // Settings to generate a password { length, uppercase, numbers, symbols}
         Tuple<int, bool, bool, bool> passwordSettings = new Tuple<int, bool, bool, bool>(12, true, true, true);
+
+        // Copy when closed
+        bool copyClosed = false;
 
         /// <summary>
         /// Initializes the application
@@ -106,8 +110,8 @@ namespace password_manager_CSharpGUI
             initialize(); // Initializes the application
 
             // TODO: Remove dummy loading when done
-            loadDummies(); // Loads dummy data to the variables
-            //loadData();
+            //loadDummies(); // Loads dummy data to the variables
+            loadData();
         }
 
         /// <summary>
@@ -375,7 +379,7 @@ namespace password_manager_CSharpGUI
                 bgwLoad.CancelAsync();
 
                 // Open the add password form
-                frmAddPassword addPassword = new frmAddPassword(this, tempPassword, false, passwordSettings, platform);
+                frmAddPassword addPassword = new frmAddPassword(this, tempPassword, false, passwordSettings, copyClosed, platform);
                 addPassword.ShowDialog();
 
                 // If the add status is 0 (Successful), we load that password to the list
@@ -497,6 +501,8 @@ namespace password_manager_CSharpGUI
         {
             Cursor = Cursors.AppStarting; // Set the cursor
 
+            loadSettings(); // Load the settings
+
             loadStrings(); // Loads all the strings into memory
 
             loadIcons(); // Load Icons
@@ -504,8 +510,6 @@ namespace password_manager_CSharpGUI
             loadPreference(); // Load preference file
 
             loadDatabase(); // Load the main password database
-
-            loadSettings(); // Load the settings
 
             Cursor = DefaultCursor; // Revert cursor
         }
@@ -586,7 +590,7 @@ namespace password_manager_CSharpGUI
             setStatusStrip(lang.get("00x0039"), statusIcons[0]);
 
             // Creating the login form and setting up the password
-            frmLogin login = new frmLogin(this);
+            frmLogin login = new frmLogin(this, userPasscode.Item2);
             login.ShowDialog();
             userPasscode = login.getPassword();
 
@@ -739,12 +743,33 @@ namespace password_manager_CSharpGUI
             }
         }
 
-        // TODO: Need to work on the settings
         /// <summary>
         /// Loads the settings
         /// </summary>
         private void loadSettings()
         {
+            frmSettings settings = new frmSettings(this, dataLocation);
+
+            // Language
+            selectedLanguage = settings.getSetting("07x0000");
+
+            // Password settings
+            passwordSettings = new Tuple<int, bool, bool, bool>(
+                int.Parse(settings.getSetting("07x0002")), 
+                settings.getSetting("07x0003") == "True", 
+                settings.getSetting("07x0004") == "True", 
+                settings.getSetting("07x0005") == "True"
+                );
+
+            // Keep me logged in
+            userPasscode = new Tuple<string, bool>("", settings.getSetting("07x0001") == "True");
+
+            // Copy when closed
+            copyClosed = (settings.getSetting("07x0006") == "True");
+
+            settings.Close();
+            settings.Dispose();
+
             // Colour pallette
             spcMain.BackColor = itemColourPalette[0];
         }
@@ -961,7 +986,7 @@ namespace password_manager_CSharpGUI
                 string platform = platforms[selectedItem[0]].getPlatform();
                 string username = platforms[selectedItem[0]].getUsernames()[ID].getUsername();
                 // TODO: View profile
-                frmView view = new frmView(this, tempPassword, platform, username);
+                frmView view = new frmView(this, tempPassword, platform, username, copyClosed);
                 view.ShowDialog();
 
                 if (view.getNext() == 1)
@@ -994,7 +1019,7 @@ namespace password_manager_CSharpGUI
                 string username = platforms[selectedItem[0]].getUsernames()[ID].getUsername();
 
                 // Loads the add password form with mode 1 (Edit mode)
-                frmAddPassword addProfile = new frmAddPassword(this, tempPassword, true, passwordSettings, platform, username, password);
+                frmAddPassword addProfile = new frmAddPassword(this, tempPassword, true, passwordSettings, copyClosed, platform, username, password);
                 addProfile.ShowDialog();
             }
         }

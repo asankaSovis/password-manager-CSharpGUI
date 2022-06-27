@@ -48,7 +48,8 @@ namespace password_manager_CSharpGUI
         /// into the system.
         /// </summary>
         /// <param name="_parent">Parent form as frmMain</param>
-        public frmLogin(frmMain _parent)
+        /// <param name="keepLogged">Keeps the password logged</param>
+        public frmLogin(frmMain _parent, bool keepLogged)
         {
             InitializeComponent();
 
@@ -70,7 +71,7 @@ namespace password_manager_CSharpGUI
             lblUser.Text = Environment.UserName.ToUpper();
 
             // Enabling/disabling controls
-            chkKeep.Checked = false; chkShow.Checked = false;
+            chkKeep.Checked = !keepLogged; chkKeep.Checked = keepLogged; chkShow.Checked = false;
             spcButton.Panel2Collapsed = true;
             spcButton.Panel1Collapsed = false;
         }

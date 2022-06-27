@@ -61,7 +61,7 @@ namespace password_manager_CSharpGUI
                     settings = JsonSerializer.Deserialize<Dictionary<string, List<string>>>(json);
                 }
                 else
-                    System.IO.File.Create(location + "\\settings.json");
+                    System.IO.File.Create(location + "\\settings.json").Close();
             }
             catch (Exception) { }
 
