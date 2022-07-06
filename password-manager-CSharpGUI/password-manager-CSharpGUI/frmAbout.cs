@@ -41,6 +41,7 @@ namespace password_manager_CSharpGUI
         string github = "";
         string translate = "";
         string blog = "";
+        string issues = "";
 
         // URL to check for updates
         string updateURL = "";
@@ -157,6 +158,8 @@ namespace password_manager_CSharpGUI
                 System.Diagnostics.Process.Start(translate); // If the link clicked is translate, we open the link
             else if ((LinkLabel)sender == lnkBlog)
                 System.Diagnostics.Process.Start(blog); // If the link clicked is blog, we open the link
+            else if ((LinkLabel)sender == lnkIssues)
+                System.Diagnostics.Process.Start(issues); // If the link clicked is Report bugs, we open the link
             else
             {
                 // Otherwise, it's an internal link
@@ -231,6 +234,7 @@ namespace password_manager_CSharpGUI
             lnkGithub.Text = lang.get("08x0006");
             lnkTranslate.Text = lang.get("08x0007");
             lnkLicense.Text = lang.get("08x0008");
+            lnkIssues.Text = lang.get("08x0014");
             lnkBlog.Text = lang.get("08x0009");
             lnkCopyright.Text = lang.get("08x0010");
             lnkNotes.Text = lang.get("08x0011");
@@ -267,6 +271,7 @@ namespace password_manager_CSharpGUI
             blog = about["blog"]; // Blog link
             lblVersion.Text = about["version"] + " (" + about["architecture"] + ")"; // Version & Architecture
             updateURL = about["update"]; // Update URL
+            issues = about["issues"]; // Issue reporting URL
         }
 
         ///////////////////////////////////////////////////////////////

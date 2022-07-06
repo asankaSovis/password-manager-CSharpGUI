@@ -324,5 +324,6 @@
   "08x0010": "Copyright Notice",
   "08x0011": "Release Notes",
   "08x0012": "Copyright (C) 2022 Asanka Sovis",
-  "08x0013": "Could not check for updates. No internet access."
+  "08x0013": "Could not check for updates. No internet access.",
+  "08x0014": "Report Bugs"
 }

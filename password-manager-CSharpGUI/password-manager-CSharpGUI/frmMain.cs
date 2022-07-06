@@ -50,7 +50,7 @@ namespace password_manager_CSharpGUI
         // Location of core files
         public static string myLocation = AppDomain.CurrentDomain.BaseDirectory;
         // Location of user data
-        public static string dataLocation = AppDomain.CurrentDomain.BaseDirectory;
+        public static string dataLocation = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\Muragala Password Manager\\";
 
         // About form
         frmAbout about = null;
@@ -114,6 +114,10 @@ namespace password_manager_CSharpGUI
             InitializeComponent();
 
             splashScreen = _splashScreen;
+
+            // Creates the data location if it's not available
+            if (!System.IO.Directory.Exists(dataLocation))
+                System.IO.Directory.CreateDirectory(dataLocation);
 
             initialize(); // Initializes the application
 
@@ -1027,6 +1031,8 @@ namespace password_manager_CSharpGUI
                     deleteProfile(ID);
                 }
             }
+
+            tstStatus.Text = ""; tstStatus.Image = null;
         }
 
         /// <summary>

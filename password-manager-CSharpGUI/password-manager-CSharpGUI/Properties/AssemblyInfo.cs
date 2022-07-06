@@ -1,16 +1,17 @@
-﻿using System.Reflection;
+﻿using System.Resources;
+using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("password-manager-CSharpGUI")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("Muragala Password Manager")]
+[assembly: AssemblyDescription("Muragala Password Manager is an open source password manager developed for windows for sstoring and retrieving password safely and securely. It uses end to end encryption and two factor authentication to provide the best security.")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("password-manager-CSharpGUI")]
-[assembly: AssemblyCopyright("Copyright ©  2022")]
+[assembly: AssemblyCompany("Skeptic Studios")]
+[assembly: AssemblyProduct("Muragala Password Manager")]
+[assembly: AssemblyCopyright("Copyright ©  2022 Asanka Sovis")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -34,3 +35,4 @@ using System.Runtime.InteropServices;
 // [assembly: AssemblyVersion("1.0.*")]
 [assembly: AssemblyVersion("1.0.0.0")]
 [assembly: AssemblyFileVersion("1.0.0.0")]
+[assembly: NeutralResourcesLanguage("en")]

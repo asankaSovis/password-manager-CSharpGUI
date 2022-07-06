@@ -54,6 +54,7 @@ namespace password_manager_CSharpGUI
             this.txtLicense = new System.Windows.Forms.TextBox();
             this.tmrMain = new System.Windows.Forms.Timer(this.components);
             this.bgwUpdate = new System.ComponentModel.BackgroundWorker();
+            this.lnkIssues = new System.Windows.Forms.LinkLabel();
             this.tlpMain.SuspendLayout();
             this.tlpBottom.SuspendLayout();
             this.tlpLinks.SuspendLayout();
@@ -108,7 +109,7 @@ namespace password_manager_CSharpGUI
             this.lblTrademark.Name = "lblTrademark";
             this.lblTrademark.Size = new System.Drawing.Size(733, 27);
             this.lblTrademark.TabIndex = 0;
-            this.lblTrademark.Text = "Trademark";
+            this.lblTrademark.Text = "Copyright Notice";
             this.lblTrademark.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // tlpLinks
@@ -137,8 +138,7 @@ namespace password_manager_CSharpGUI
             this.lnkCopyright.Location = new System.Drawing.Point(369, 0);
             this.lnkCopyright.Name = "lnkCopyright";
             this.lnkCopyright.Size = new System.Drawing.Size(177, 56);
-            this.lnkCopyright.TabIndex = 3;
-            this.lnkCopyright.TabStop = true;
+            this.lnkCopyright.TabIndex = 0;
             this.lnkCopyright.Text = "Copyright";
             this.lnkCopyright.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.lnkCopyright.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lnkClicked);
@@ -150,8 +150,7 @@ namespace password_manager_CSharpGUI
             this.lnkBlog.Location = new System.Drawing.Point(186, 0);
             this.lnkBlog.Name = "lnkBlog";
             this.lnkBlog.Size = new System.Drawing.Size(177, 56);
-            this.lnkBlog.TabIndex = 2;
-            this.lnkBlog.TabStop = true;
+            this.lnkBlog.TabIndex = 0;
             this.lnkBlog.Text = "Blog";
             this.lnkBlog.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.lnkBlog.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lnkClicked);
@@ -164,7 +163,6 @@ namespace password_manager_CSharpGUI
             this.lnkLicense.Name = "lnkLicense";
             this.lnkLicense.Size = new System.Drawing.Size(177, 56);
             this.lnkLicense.TabIndex = 0;
-            this.lnkLicense.TabStop = true;
             this.lnkLicense.Text = "License";
             this.lnkLicense.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.lnkLicense.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lnkClicked);
@@ -176,9 +174,9 @@ namespace password_manager_CSharpGUI
             this.lnkNotes.Location = new System.Drawing.Point(552, 0);
             this.lnkNotes.Name = "lnkNotes";
             this.lnkNotes.Size = new System.Drawing.Size(178, 56);
-            this.lnkNotes.TabIndex = 1;
+            this.lnkNotes.TabIndex = 0;
             this.lnkNotes.TabStop = true;
-            this.lnkNotes.Text = "Release Notes";
+            this.lnkNotes.Text = "Notes";
             this.lnkNotes.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.lnkNotes.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lnkClicked);
             // 
@@ -314,14 +312,16 @@ namespace password_manager_CSharpGUI
             // 
             // tlpInvolve
             // 
-            this.tlpInvolve.ColumnCount = 4;
+            this.tlpInvolve.ColumnCount = 5;
             this.tlpInvolve.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 170F));
             this.tlpInvolve.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 49F));
             this.tlpInvolve.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 68F));
+            this.tlpInvolve.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 89F));
             this.tlpInvolve.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tlpInvolve.Controls.Add(this.lnkTranslate, 0, 0);
             this.tlpInvolve.Controls.Add(this.lnkGithub, 0, 0);
             this.tlpInvolve.Controls.Add(this.lblInvolve, 0, 0);
+            this.tlpInvolve.Controls.Add(this.lnkIssues, 3, 0);
             this.tlpInvolve.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tlpInvolve.Location = new System.Drawing.Point(3, 228);
             this.tlpInvolve.Name = "tlpInvolve";
@@ -338,8 +338,7 @@ namespace password_manager_CSharpGUI
             this.lnkTranslate.Location = new System.Drawing.Point(222, 0);
             this.lnkTranslate.Name = "lnkTranslate";
             this.lnkTranslate.Size = new System.Drawing.Size(62, 23);
-            this.lnkTranslate.TabIndex = 7;
-            this.lnkTranslate.TabStop = true;
+            this.lnkTranslate.TabIndex = 0;
             this.lnkTranslate.Text = "Translate";
             this.lnkTranslate.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.lnkTranslate.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lnkClicked);
@@ -352,8 +351,7 @@ namespace password_manager_CSharpGUI
             this.lnkGithub.Location = new System.Drawing.Point(173, 0);
             this.lnkGithub.Name = "lnkGithub";
             this.lnkGithub.Size = new System.Drawing.Size(43, 23);
-            this.lnkGithub.TabIndex = 6;
-            this.lnkGithub.TabStop = true;
+            this.lnkGithub.TabIndex = 0;
             this.lnkGithub.Text = "Github";
             this.lnkGithub.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.lnkGithub.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lnkClicked);
@@ -395,6 +393,19 @@ namespace password_manager_CSharpGUI
             // 
             this.bgwUpdate.WorkerSupportsCancellation = true;
             this.bgwUpdate.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bgwUpdate_DoWork);
+            // 
+            // lnkIssues
+            // 
+            this.lnkIssues.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lnkIssues.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.886957F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lnkIssues.LinkColor = System.Drawing.Color.Black;
+            this.lnkIssues.Location = new System.Drawing.Point(290, 0);
+            this.lnkIssues.Name = "lnkIssues";
+            this.lnkIssues.Size = new System.Drawing.Size(83, 23);
+            this.lnkIssues.TabIndex = 0;
+            this.lnkIssues.Text = "Issues";
+            this.lnkIssues.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lnkIssues.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lnkClicked);
             // 
             // frmAbout
             // 
@@ -452,5 +463,6 @@ namespace password_manager_CSharpGUI
         private System.Windows.Forms.Timer tmrMain;
         private System.Windows.Forms.LinkLabel lnkCopyright;
         private System.ComponentModel.BackgroundWorker bgwUpdate;
+        private System.Windows.Forms.LinkLabel lnkIssues;
     }
 }

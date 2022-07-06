@@ -3,8 +3,9 @@
   "product": "Password Manager",
   "version": "1.0.0 Alpha",
   "architecture": "64-bit",
-  "github": "https://github.com/asankaSovis/password-manager-CSharpLibrary",
-  "translate": "https://github.com/asankaSovis/password-manager-CSharpLibrary",
+  "github": "https://github.com/asankaSovis/password-manager-CSharpGUI",
+  "translate": "https://github.com/asankaSovis/password-manager-CSharpGUI",
+  "issues": "https://github.com/asankaSovis/password-manager-CSharpGUI/issues",
   "blog": "https://asanka.hashnode.dev/series/project-muragala",
   "update": "google.com"
 }

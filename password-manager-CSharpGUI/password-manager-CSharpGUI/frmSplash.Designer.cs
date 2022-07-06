@@ -52,7 +52,9 @@ namespace password_manager_CSharpGUI
             this.Controls.Add(this.pcbMain);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.MaximizeBox = false;
+            this.MaximumSize = new System.Drawing.Size(645, 331);
             this.MinimizeBox = false;
+            this.MinimumSize = new System.Drawing.Size(645, 331);
             this.Name = "frmSplash";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
