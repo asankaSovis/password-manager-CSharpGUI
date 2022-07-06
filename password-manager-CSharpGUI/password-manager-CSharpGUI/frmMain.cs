@@ -52,6 +52,9 @@ namespace password_manager_CSharpGUI
         // Location of user data
         public static string dataLocation = AppDomain.CurrentDomain.BaseDirectory;
 
+        // About form
+        frmAbout about = null;
+
         // Colour Pallettes
         // Palette of the List: <Panel, Deselected, Hovered, Selected>
         public Color[] itemColourPalette = {
@@ -98,20 +101,35 @@ namespace password_manager_CSharpGUI
         // Copy when closed
         bool copyClosed = false;
 
+        // Splash screen
+        System.Threading.Thread splashScreen;
+
         /// <summary>
         /// Initializes the application
         /// This function will load the necessary components for the application
         /// to work
         /// </summary>
-        public frmMain()
+        public frmMain(System.Threading.Thread _splashScreen)
         {
             InitializeComponent();
+
+            splashScreen = _splashScreen;
 
             initialize(); // Initializes the application
 
             // TODO: Remove dummy loading when done
             //loadDummies(); // Loads dummy data to the variables
             loadData();
+        }
+
+        /// <summary>
+        /// Loads the form. Draws the banner
+        /// </summary>
+        /// <param name="sender">Sender</param>
+        /// <param name="e">Event Arguements</param>
+        private void frmMain_Load(object sender, EventArgs e)
+        {
+            drawBanner(); // Draw the banner
         }
 
         /// <summary>
@@ -124,6 +142,8 @@ namespace password_manager_CSharpGUI
         private void frmMain_Resize(object sender, EventArgs e)
         {
             resizeItems(); // Resizes the items in the lists
+
+            drawBanner(); // Resizes the banner
 
             // TODO: Resize the banner image
         }
@@ -464,7 +484,8 @@ namespace password_manager_CSharpGUI
         /// <param name="e">Event arguements</param>
         private void btnAbout_Click(object sender, EventArgs e)
         {
-            comingSoon();
+            about = new frmAbout(this, itemColourPalette);
+            about.ShowDialog(this);
         }
 
         /// <summary>
@@ -591,6 +612,7 @@ namespace password_manager_CSharpGUI
 
             // Creating the login form and setting up the password
             frmLogin login = new frmLogin(this, userPasscode.Item2);
+            closeSplash();
             login.ShowDialog();
             userPasscode = login.getPassword();
 
@@ -697,11 +719,11 @@ namespace password_manager_CSharpGUI
             // Loads the database and error check
             int error = library.loadDatabase(dataLocation + "database.en");
 
-            if (error == MuragalaLibrary.error_list.database_created)
+            //if (error == MuragalaLibrary.error_list.database_created)
                 // TODO: New database is created
                 //printf(strVals["no_database_found"]);
-                ;
-            else if (error == MuragalaLibrary.error_list.database_load_failed)
+
+            if (error == MuragalaLibrary.error_list.database_load_failed)
             {
                 // TODO: Error loading database
                 //printf(strVals["fatal_error"].Replace("<l>", "Database loading").Replace("<e>", "Could not load database."));
@@ -721,6 +743,9 @@ namespace password_manager_CSharpGUI
             if (error == MuragalaLibrary.error_list.preference_load_failed)
             {
                 frmSetup newPasscode = new frmSetup(this);
+
+                closeSplash();
+
                 newPasscode.ShowDialog();
 
                 // If we succeeded we continue
@@ -791,7 +816,12 @@ namespace password_manager_CSharpGUI
         /// </summary>
         private void loadIcons()
         {
-            this.Icon = Icon.ExtractAssociatedIcon(myLocation + "icon.ico");
+            // Application Icon
+            try
+            {
+                this.Icon = Icon.ExtractAssociatedIcon(myLocation + "icon.ico");
+            } catch { }
+
             // List Icons
             listIcons = new Image[] { loadIcon("platform"), loadIcon("user") };
 
@@ -1297,6 +1327,40 @@ namespace password_manager_CSharpGUI
         {
             frmMessage message = new frmMessage(this, lang.get("00x0045"), lang.get("00x0046"), loadIcon("walle"), selectedLanguage);
             message.ShowDialog();
+        }
+
+        /// <summary>
+        /// Draws and resizes the banner on the banner picturebox
+        /// </summary>
+        private void drawBanner()
+        {
+            // Creating the canvas
+            Bitmap BitmapImage = new Bitmap(pcbBanner.Size.Width, pcbBanner.Size.Height,
+                                System.Drawing.Imaging.PixelFormat.Format32bppPArgb);
+            Graphics GraphicsFromImage = Graphics.FromImage(BitmapImage);
+
+            // Loading banner
+
+            Image banner = Image.FromFile(myLocation + "resources/banner.png");
+
+            int height = BitmapImage.Size.Height;
+            int width = (BitmapImage.Size.Height * banner.Size.Width) / banner.Size.Height;
+
+            GraphicsFromImage.DrawImage(banner, 0, 0, width, height);
+
+            // Applying to the banner
+
+            pcbBanner.Image = BitmapImage;
+        }
+
+        /// <summary>
+        /// Closes the splash screen
+        /// </summary>
+        private void closeSplash()
+        {
+            if (splashScreen.IsAlive)
+                try { splashScreen.Abort(); } catch { }
+            this.TopMost = true; this.TopMost = false;
         }
     }
 }

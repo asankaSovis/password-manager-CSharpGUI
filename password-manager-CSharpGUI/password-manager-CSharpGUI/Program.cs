@@ -34,11 +34,19 @@ namespace password_manager_CSharpGUI
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new frmMain());
-            //Application.Run(new frmSettings());
-            //Application.Run(new frmLogin());
-            //Application.Run(new frmSetup("English"));
-            //Application.Run(new frmMessage(new frmMain(), "Hello World", "\n", "English", MessageBoxIcon.Warning, MessageBoxButtons.YesNo));
+            // Running a splash screen on a separate thread
+            System.Threading.Thread thread = new System.Threading.Thread(load);
+            thread.Start();
+            // Running the main application
+            Application.Run(new frmMain(thread));
+        }
+
+        static void load()
+        {
+            // Loading screen and the async function called by the thread
+            // for splash screen
+            frmSplash splash = new frmSplash();
+            splash.ShowDialog();
         }
     }
 }

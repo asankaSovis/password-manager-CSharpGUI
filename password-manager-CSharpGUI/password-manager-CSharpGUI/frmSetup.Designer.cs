@@ -39,6 +39,7 @@ namespace password_manager_CSharpGUI
             this.btnDone = new System.Windows.Forms.Button();
             this.lblDone = new System.Windows.Forms.Label();
             this.txtType = new password_manager_CSharpGUI.WatermarkTextBox();
+            this.pcbMain = new System.Windows.Forms.PictureBox();
             this.tltMain = new System.Windows.Forms.ToolTip(this.components);
             this.bgwMain = new System.ComponentModel.BackgroundWorker();
             this.tmrMain = new System.Windows.Forms.Timer(this.components);
@@ -48,6 +49,7 @@ namespace password_manager_CSharpGUI
             this.spcButton.Panel1.SuspendLayout();
             this.spcButton.Panel2.SuspendLayout();
             this.spcButton.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pcbMain)).BeginInit();
             this.SuspendLayout();
             // 
             // tlpMain
@@ -59,6 +61,7 @@ namespace password_manager_CSharpGUI
             this.tlpMain.Controls.Add(this.psmMain, 0, 3);
             this.tlpMain.Controls.Add(this.tlpButtons, 0, 4);
             this.tlpMain.Controls.Add(this.txtType, 0, 1);
+            this.tlpMain.Controls.Add(this.pcbMain, 0, 0);
             this.tlpMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tlpMain.Location = new System.Drawing.Point(0, 0);
             this.tlpMain.Name = "tlpMain";
@@ -190,6 +193,16 @@ namespace password_manager_CSharpGUI
             this.txtType.TextChanged += new System.EventHandler(this.txtType_TextChanged);
             this.txtType.KeyDown += new System.Windows.Forms.KeyEventHandler(this.KeyDown);
             // 
+            // pcbMain
+            // 
+            this.pcbMain.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pcbMain.Location = new System.Drawing.Point(13, 13);
+            this.pcbMain.Name = "pcbMain";
+            this.pcbMain.Size = new System.Drawing.Size(359, 195);
+            this.pcbMain.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pcbMain.TabIndex = 3;
+            this.pcbMain.TabStop = false;
+            // 
             // tltMain
             // 
             this.tltMain.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
@@ -222,6 +235,7 @@ namespace password_manager_CSharpGUI
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "frmSetup";
+            this.TopMost = true;
             this.tlpMain.ResumeLayout(false);
             this.tlpMain.PerformLayout();
             this.tlpButtons.ResumeLayout(false);
@@ -230,6 +244,7 @@ namespace password_manager_CSharpGUI
             this.spcButton.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.spcButton)).EndInit();
             this.spcButton.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pcbMain)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -248,5 +263,6 @@ namespace password_manager_CSharpGUI
         private System.Windows.Forms.Label lblDone;
         private System.ComponentModel.BackgroundWorker bgwMain;
         private System.Windows.Forms.Timer tmrMain;
+        private System.Windows.Forms.PictureBox pcbMain;
     }
 }

@@ -86,6 +86,8 @@ namespace password_manager_CSharpGUI
             updateSlider();
 
             loadIcons(); // Load icons
+
+            drawBanner();
         }
 
         /// <summary>
@@ -820,6 +822,30 @@ namespace password_manager_CSharpGUI
             catch (Exception) { icon = pcbAuthentication.ErrorImage; }
 
             return icon;
+        }
+
+        /// <summary>
+        /// Draws and resizes the banner on the banner picturebox
+        /// </summary>
+        private void drawBanner()
+        {
+            // Creating the canvas
+            Bitmap BitmapImage = new Bitmap(pcbBanner.Size.Width, pcbBanner.Size.Height,
+                                System.Drawing.Imaging.PixelFormat.Format32bppPArgb);
+            Graphics GraphicsFromImage = Graphics.FromImage(BitmapImage);
+
+            // Loading banner
+
+            Image banner = Image.FromFile(myLocation + "resources/banner.png");
+
+            int height = BitmapImage.Size.Height;
+            int width = (BitmapImage.Size.Height * banner.Size.Width) / banner.Size.Height;
+
+            GraphicsFromImage.DrawImage(banner, 0, 0, width, height);
+
+            // Applying to the banner
+
+            pcbBanner.Image = BitmapImage;
         }
     }
 }

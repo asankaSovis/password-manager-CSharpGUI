@@ -104,7 +104,7 @@ namespace password_manager_CSharpGUI
             this.tstCount.BorderSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.Left;
             this.tstCount.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.tstCount.Name = "tstCount";
-            this.tstCount.Size = new System.Drawing.Size(37, 22);
+            this.tstCount.Size = new System.Drawing.Size(155, 22);
             this.tstCount.Spring = true;
             this.tstCount.Text = "0 Passwords";
             // 
@@ -347,8 +347,10 @@ namespace password_manager_CSharpGUI
             this.Controls.Add(this.tlpMain);
             this.Controls.Add(this.stsMain);
             this.MaximizeBox = false;
+            this.MinimumSize = new System.Drawing.Size(588, 688);
             this.Name = "frmMain";
             this.Text = "Muragala Password Manager";
+            this.Load += new System.EventHandler(this.frmMain_Load);
             this.Resize += new System.EventHandler(this.frmMain_Resize);
             this.stsMain.ResumeLayout(false);
             this.stsMain.PerformLayout();

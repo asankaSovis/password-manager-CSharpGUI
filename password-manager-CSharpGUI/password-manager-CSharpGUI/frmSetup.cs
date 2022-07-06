@@ -74,6 +74,8 @@ namespace password_manager_CSharpGUI
             // Collapse button labels
             spcButton.Panel2Collapsed = true;
             spcButton.Panel1Collapsed = false;
+
+            pcbMain.Load(myLocation + "\\tutorial\\setup.png");
         }
 
         /// <summary>

@@ -90,6 +90,7 @@ namespace password_manager_CSharpGUI
             this.btnApply = new System.Windows.Forms.Button();
             this.sfdSaveFile = new System.Windows.Forms.SaveFileDialog();
             this.tltMain = new System.Windows.Forms.ToolTip(this.components);
+            this.pcbBanner = new System.Windows.Forms.PictureBox();
             this.grpGeneration.SuspendLayout();
             this.tlpGeneration.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pcbGeneration)).BeginInit();
@@ -128,6 +129,7 @@ namespace password_manager_CSharpGUI
             this.tlpBackup.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pcbBackup)).BeginInit();
             this.tlpButtons.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pcbBanner)).BeginInit();
             this.SuspendLayout();
             // 
             // grpGeneration
@@ -229,6 +231,7 @@ namespace password_manager_CSharpGUI
             this.tlpMain.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tlpMain.Controls.Add(this.tabSettings, 0, 1);
             this.tlpMain.Controls.Add(this.tlpButtons, 0, 2);
+            this.tlpMain.Controls.Add(this.pcbBanner, 0, 0);
             this.tlpMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tlpMain.Location = new System.Drawing.Point(0, 0);
             this.tlpMain.Name = "tlpMain";
@@ -854,6 +857,16 @@ namespace password_manager_CSharpGUI
             this.tltMain.ToolTipTitle = "Muragala Password Manager";
             this.tltMain.Popup += new System.Windows.Forms.PopupEventHandler(this.tltMain_Popup);
             // 
+            // pcbBanner
+            // 
+            this.pcbBanner.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pcbBanner.Location = new System.Drawing.Point(3, 3);
+            this.pcbBanner.Name = "pcbBanner";
+            this.pcbBanner.Size = new System.Drawing.Size(544, 94);
+            this.pcbBanner.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pcbBanner.TabIndex = 2;
+            this.pcbBanner.TabStop = false;
+            // 
             // frmSettings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -906,6 +919,7 @@ namespace password_manager_CSharpGUI
             this.tlpBackup.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pcbBackup)).EndInit();
             this.tlpButtons.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pcbBanner)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -972,5 +986,6 @@ namespace password_manager_CSharpGUI
         private System.Windows.Forms.GroupBox grpGeneration;
         private System.Windows.Forms.ToolTip tltMain;
         private System.Windows.Forms.Label flpTheme;
+        private System.Windows.Forms.PictureBox pcbBanner;
     }
 }

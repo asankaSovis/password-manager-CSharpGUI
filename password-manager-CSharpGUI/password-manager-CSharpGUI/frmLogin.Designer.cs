@@ -255,6 +255,7 @@ namespace password_manager_CSharpGUI
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "User Authentication";
+            this.TopMost = true;
             this.tlpMain.ResumeLayout(false);
             this.tlpButtons.ResumeLayout(false);
             this.tlpButtons.PerformLayout();
