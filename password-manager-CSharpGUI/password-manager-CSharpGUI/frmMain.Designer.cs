@@ -75,10 +75,10 @@ namespace password_manager_CSharpGUI
             this.tstStatus,
             this.tstProgress,
             this.tstCount});
-            this.stsMain.Location = new System.Drawing.Point(0, 504);
+            this.stsMain.Location = new System.Drawing.Point(0, 548);
             this.stsMain.Name = "stsMain";
             this.stsMain.Padding = new System.Windows.Forms.Padding(1, 0, 10, 0);
-            this.stsMain.Size = new System.Drawing.Size(429, 23);
+            this.stsMain.Size = new System.Drawing.Size(520, 23);
             this.stsMain.TabIndex = 0;
             this.stsMain.Text = "stsMain";
             // 
@@ -96,7 +96,7 @@ namespace password_manager_CSharpGUI
             this.tstProgress.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
             this.tstProgress.Margin = new System.Windows.Forms.Padding(1, 5, 1, 5);
             this.tstProgress.Name = "tstProgress";
-            this.tstProgress.Size = new System.Drawing.Size(59, 13);
+            this.tstProgress.Size = new System.Drawing.Size(100, 13);
             this.tstProgress.Style = System.Windows.Forms.ProgressBarStyle.Marquee;
             this.tstProgress.Visible = false;
             // 
@@ -105,7 +105,7 @@ namespace password_manager_CSharpGUI
             this.tstCount.BorderSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.Left;
             this.tstCount.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.tstCount.Name = "tstCount";
-            this.tstCount.Size = new System.Drawing.Size(75, 18);
+            this.tstCount.Size = new System.Drawing.Size(109, 18);
             this.tstCount.Spring = true;
             this.tstCount.Text = "0 Passwords";
             // 
@@ -123,7 +123,7 @@ namespace password_manager_CSharpGUI
             this.tlpMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 73F));
             this.tlpMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tlpMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 16F));
-            this.tlpMain.Size = new System.Drawing.Size(429, 504);
+            this.tlpMain.Size = new System.Drawing.Size(520, 548);
             this.tlpMain.TabIndex = 1;
             // 
             // pcbBanner
@@ -132,7 +132,7 @@ namespace password_manager_CSharpGUI
             this.pcbBanner.Location = new System.Drawing.Point(2, 2);
             this.pcbBanner.Margin = new System.Windows.Forms.Padding(2);
             this.pcbBanner.Name = "pcbBanner";
-            this.pcbBanner.Size = new System.Drawing.Size(425, 69);
+            this.pcbBanner.Size = new System.Drawing.Size(516, 69);
             this.pcbBanner.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pcbBanner.TabIndex = 1;
             this.pcbBanner.TabStop = false;
@@ -145,7 +145,7 @@ namespace password_manager_CSharpGUI
             this.grpPasswords.Margin = new System.Windows.Forms.Padding(2);
             this.grpPasswords.Name = "grpPasswords";
             this.grpPasswords.Padding = new System.Windows.Forms.Padding(2);
-            this.grpPasswords.Size = new System.Drawing.Size(425, 427);
+            this.grpPasswords.Size = new System.Drawing.Size(516, 471);
             this.grpPasswords.TabIndex = 3;
             this.grpPasswords.TabStop = false;
             this.grpPasswords.Text = "Profiles";
@@ -164,7 +164,7 @@ namespace password_manager_CSharpGUI
             this.tlpPasswords.RowCount = 2;
             this.tlpPasswords.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tlpPasswords.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 47F));
-            this.tlpPasswords.Size = new System.Drawing.Size(421, 410);
+            this.tlpPasswords.Size = new System.Drawing.Size(512, 454);
             this.tlpPasswords.TabIndex = 0;
             // 
             // tlpProfile
@@ -181,7 +181,7 @@ namespace password_manager_CSharpGUI
             this.tlpProfile.RowCount = 2;
             this.tlpProfile.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 38F));
             this.tlpProfile.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tlpProfile.Size = new System.Drawing.Size(417, 359);
+            this.tlpProfile.Size = new System.Drawing.Size(508, 403);
             this.tlpProfile.TabIndex = 2;
             // 
             // spcMain
@@ -200,7 +200,7 @@ namespace password_manager_CSharpGUI
             // 
             this.spcMain.Panel2.Controls.Add(this.flpUsernames);
             this.spcMain.Panel2Collapsed = true;
-            this.spcMain.Size = new System.Drawing.Size(413, 317);
+            this.spcMain.Size = new System.Drawing.Size(504, 361);
             this.spcMain.SplitterDistance = 232;
             this.spcMain.SplitterWidth = 3;
             this.spcMain.TabIndex = 2;
@@ -213,7 +213,7 @@ namespace password_manager_CSharpGUI
             this.flpPlatforms.Location = new System.Drawing.Point(0, 0);
             this.flpPlatforms.Margin = new System.Windows.Forms.Padding(2);
             this.flpPlatforms.Name = "flpPlatforms";
-            this.flpPlatforms.Size = new System.Drawing.Size(413, 317);
+            this.flpPlatforms.Size = new System.Drawing.Size(504, 361);
             this.flpPlatforms.TabIndex = 0;
             this.flpPlatforms.WrapContents = false;
             this.flpPlatforms.Click += new System.EventHandler(this.flpPlatforms_Click);
@@ -233,7 +233,7 @@ namespace password_manager_CSharpGUI
             // tlpSearch
             // 
             this.tlpSearch.ColumnCount = 2;
-            this.tlpSearch.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 31F));
+            this.tlpSearch.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 34F));
             this.tlpSearch.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tlpSearch.Controls.Add(this.btnReload, 0, 0);
             this.tlpSearch.Controls.Add(this.txtSearch, 1, 0);
@@ -243,7 +243,7 @@ namespace password_manager_CSharpGUI
             this.tlpSearch.Name = "tlpSearch";
             this.tlpSearch.RowCount = 1;
             this.tlpSearch.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tlpSearch.Size = new System.Drawing.Size(413, 34);
+            this.tlpSearch.Size = new System.Drawing.Size(504, 34);
             this.tlpSearch.TabIndex = 3;
             // 
             // btnReload
@@ -252,7 +252,7 @@ namespace password_manager_CSharpGUI
             this.btnReload.Location = new System.Drawing.Point(2, 2);
             this.btnReload.Margin = new System.Windows.Forms.Padding(2);
             this.btnReload.Name = "btnReload";
-            this.btnReload.Size = new System.Drawing.Size(27, 30);
+            this.btnReload.Size = new System.Drawing.Size(30, 30);
             this.btnReload.TabIndex = 2;
             this.btnReload.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnReload.UseVisualStyleBackColor = true;
@@ -262,11 +262,11 @@ namespace password_manager_CSharpGUI
             // 
             this.txtSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.txtSearch.ForeColor = System.Drawing.Color.Black;
-            this.txtSearch.Location = new System.Drawing.Point(33, 7);
+            this.txtSearch.Location = new System.Drawing.Point(36, 7);
             this.txtSearch.MainText = "";
             this.txtSearch.Margin = new System.Windows.Forms.Padding(2);
             this.txtSearch.Name = "txtSearch";
-            this.txtSearch.Size = new System.Drawing.Size(378, 20);
+            this.txtSearch.Size = new System.Drawing.Size(466, 20);
             this.txtSearch.TabIndex = 3;
             this.txtSearch.WatermarkActive = true;
             this.txtSearch.WatermarkText = "Type here";
@@ -286,22 +286,22 @@ namespace password_manager_CSharpGUI
             this.tlpBottom.Controls.Add(this.btnAbout, 3, 0);
             this.tlpBottom.Controls.Add(this.btnLock, 0, 0);
             this.tlpBottom.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tlpBottom.Location = new System.Drawing.Point(2, 365);
+            this.tlpBottom.Location = new System.Drawing.Point(2, 409);
             this.tlpBottom.Margin = new System.Windows.Forms.Padding(2);
             this.tlpBottom.Name = "tlpBottom";
             this.tlpBottom.RowCount = 1;
             this.tlpBottom.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tlpBottom.Size = new System.Drawing.Size(417, 43);
+            this.tlpBottom.Size = new System.Drawing.Size(508, 43);
             this.tlpBottom.TabIndex = 3;
             // 
             // btnAdd
             // 
             this.btnAdd.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnAdd.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAdd.Location = new System.Drawing.Point(253, 2);
+            this.btnAdd.Location = new System.Drawing.Point(345, 2);
             this.btnAdd.Margin = new System.Windows.Forms.Padding(2);
             this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(162, 39);
+            this.btnAdd.Size = new System.Drawing.Size(161, 39);
             this.btnAdd.TabIndex = 1;
             this.btnAdd.Text = "Add";
             this.btnAdd.UseVisualStyleBackColor = true;
@@ -310,7 +310,7 @@ namespace password_manager_CSharpGUI
             // btnSettings
             // 
             this.btnSettings.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnSettings.Location = new System.Drawing.Point(108, 2);
+            this.btnSettings.Location = new System.Drawing.Point(154, 2);
             this.btnSettings.Margin = new System.Windows.Forms.Padding(2);
             this.btnSettings.Name = "btnSettings";
             this.btnSettings.Size = new System.Drawing.Size(35, 39);
@@ -321,7 +321,7 @@ namespace password_manager_CSharpGUI
             // btnAbout
             // 
             this.btnAbout.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnAbout.Location = new System.Drawing.Point(147, 2);
+            this.btnAbout.Location = new System.Drawing.Point(193, 2);
             this.btnAbout.Margin = new System.Windows.Forms.Padding(2);
             this.btnAbout.Name = "btnAbout";
             this.btnAbout.Size = new System.Drawing.Size(35, 39);
@@ -362,7 +362,7 @@ namespace password_manager_CSharpGUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(429, 527);
+            this.ClientSize = new System.Drawing.Size(520, 571);
             this.Controls.Add(this.tlpMain);
             this.Controls.Add(this.stsMain);
             this.Margin = new System.Windows.Forms.Padding(2);

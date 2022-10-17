@@ -58,12 +58,13 @@ namespace password_manager_CSharpGUI
             this.tlpMain.Controls.Add(this.tlpPassword, 0, 0);
             this.tlpMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tlpMain.Location = new System.Drawing.Point(0, 0);
+            this.tlpMain.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.tlpMain.Name = "tlpMain";
             this.tlpMain.RowCount = 3;
-            this.tlpMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
+            this.tlpMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 41F));
             this.tlpMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 44.53125F));
             this.tlpMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 55.46875F));
-            this.tlpMain.Size = new System.Drawing.Size(652, 178);
+            this.tlpMain.Size = new System.Drawing.Size(489, 145);
             this.tlpMain.TabIndex = 0;
             // 
             // tlpCharacters
@@ -79,12 +80,13 @@ namespace password_manager_CSharpGUI
             this.tlpCharacters.Controls.Add(this.chkSymbols, 3, 0);
             this.tlpCharacters.Cursor = System.Windows.Forms.Cursors.Default;
             this.tlpCharacters.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tlpCharacters.Location = new System.Drawing.Point(3, 110);
+            this.tlpCharacters.Location = new System.Drawing.Point(2, 89);
+            this.tlpCharacters.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.tlpCharacters.Name = "tlpCharacters";
             this.tlpCharacters.RowCount = 1;
             this.tlpCharacters.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tlpCharacters.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 65F));
-            this.tlpCharacters.Size = new System.Drawing.Size(646, 65);
+            this.tlpCharacters.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 53F));
+            this.tlpCharacters.Size = new System.Drawing.Size(485, 54);
             this.tlpCharacters.TabIndex = 0;
             // 
             // lblLowercase
@@ -92,10 +94,10 @@ namespace password_manager_CSharpGUI
             this.lblLowercase.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.lblLowercase.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblLowercase.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.lblLowercase.Location = new System.Drawing.Point(6, 6);
-            this.lblLowercase.Margin = new System.Windows.Forms.Padding(6);
+            this.lblLowercase.Location = new System.Drawing.Point(4, 5);
+            this.lblLowercase.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.lblLowercase.Name = "lblLowercase";
-            this.lblLowercase.Size = new System.Drawing.Size(149, 53);
+            this.lblLowercase.Size = new System.Drawing.Size(113, 44);
             this.lblLowercase.TabIndex = 0;
             this.lblLowercase.Text = "abcd     ";
             this.lblLowercase.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -105,9 +107,10 @@ namespace password_manager_CSharpGUI
             this.chkUppercase.Appearance = System.Windows.Forms.Appearance.Button;
             this.chkUppercase.Dock = System.Windows.Forms.DockStyle.Fill;
             this.chkUppercase.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.chkUppercase.Location = new System.Drawing.Point(164, 3);
+            this.chkUppercase.Location = new System.Drawing.Point(123, 2);
+            this.chkUppercase.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.chkUppercase.Name = "chkUppercase";
-            this.chkUppercase.Size = new System.Drawing.Size(155, 59);
+            this.chkUppercase.Size = new System.Drawing.Size(117, 50);
             this.chkUppercase.TabIndex = 1;
             this.chkUppercase.Text = "ABCD     ";
             this.chkUppercase.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -119,9 +122,10 @@ namespace password_manager_CSharpGUI
             this.chkNumbers.Appearance = System.Windows.Forms.Appearance.Button;
             this.chkNumbers.Dock = System.Windows.Forms.DockStyle.Fill;
             this.chkNumbers.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.chkNumbers.Location = new System.Drawing.Point(325, 3);
+            this.chkNumbers.Location = new System.Drawing.Point(244, 2);
+            this.chkNumbers.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.chkNumbers.Name = "chkNumbers";
-            this.chkNumbers.Size = new System.Drawing.Size(155, 59);
+            this.chkNumbers.Size = new System.Drawing.Size(117, 50);
             this.chkNumbers.TabIndex = 2;
             this.chkNumbers.Text = "1234     ";
             this.chkNumbers.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -133,9 +137,10 @@ namespace password_manager_CSharpGUI
             this.chkSymbols.Appearance = System.Windows.Forms.Appearance.Button;
             this.chkSymbols.Dock = System.Windows.Forms.DockStyle.Fill;
             this.chkSymbols.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.chkSymbols.Location = new System.Drawing.Point(486, 3);
+            this.chkSymbols.Location = new System.Drawing.Point(365, 2);
+            this.chkSymbols.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.chkSymbols.Name = "chkSymbols";
-            this.chkSymbols.Size = new System.Drawing.Size(157, 59);
+            this.chkSymbols.Size = new System.Drawing.Size(118, 50);
             this.chkSymbols.TabIndex = 3;
             this.chkSymbols.Text = "@#%?     ";
             this.chkSymbols.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -146,27 +151,28 @@ namespace password_manager_CSharpGUI
             // 
             this.tlpGenerate.ColumnCount = 2;
             this.tlpGenerate.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tlpGenerate.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 146F));
+            this.tlpGenerate.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 110F));
             this.tlpGenerate.Controls.Add(this.lblStrength, 1, 0);
             this.tlpGenerate.Controls.Add(this.lblCount, 0, 0);
             this.tlpGenerate.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tlpGenerate.Location = new System.Drawing.Point(3, 53);
+            this.tlpGenerate.Location = new System.Drawing.Point(2, 43);
+            this.tlpGenerate.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.tlpGenerate.Name = "tlpGenerate";
             this.tlpGenerate.RowCount = 1;
             this.tlpGenerate.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tlpGenerate.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 51F));
-            this.tlpGenerate.Size = new System.Drawing.Size(646, 51);
+            this.tlpGenerate.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 41F));
+            this.tlpGenerate.Size = new System.Drawing.Size(485, 42);
             this.tlpGenerate.TabIndex = 1;
             // 
             // lblStrength
             // 
             this.lblStrength.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblStrength.Font = new System.Drawing.Font("Microsoft YaHei UI", 10.01739F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblStrength.Font = new System.Drawing.Font("Microsoft YaHei UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblStrength.ForeColor = System.Drawing.Color.DimGray;
-            this.lblStrength.Location = new System.Drawing.Point(503, 3);
-            this.lblStrength.Margin = new System.Windows.Forms.Padding(3);
+            this.lblStrength.Location = new System.Drawing.Point(377, 2);
+            this.lblStrength.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.lblStrength.Name = "lblStrength";
-            this.lblStrength.Size = new System.Drawing.Size(140, 45);
+            this.lblStrength.Size = new System.Drawing.Size(106, 38);
             this.lblStrength.TabIndex = 1;
             this.lblStrength.Text = "Strong";
             this.lblStrength.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -175,11 +181,12 @@ namespace password_manager_CSharpGUI
             // 
             this.lblCount.Cursor = System.Windows.Forms.Cursors.Hand;
             this.lblCount.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblCount.Font = new System.Drawing.Font("Microsoft YaHei UI", 10.01739F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCount.Font = new System.Drawing.Font("Microsoft YaHei UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblCount.ForeColor = System.Drawing.Color.DimGray;
-            this.lblCount.Location = new System.Drawing.Point(3, 0);
+            this.lblCount.Location = new System.Drawing.Point(2, 0);
+            this.lblCount.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblCount.Name = "lblCount";
-            this.lblCount.Size = new System.Drawing.Size(494, 51);
+            this.lblCount.Size = new System.Drawing.Size(371, 42);
             this.lblCount.TabIndex = 2;
             this.lblCount.Text = "No Characters!";
             this.lblCount.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -190,25 +197,27 @@ namespace password_manager_CSharpGUI
             // tlpPassword
             // 
             this.tlpPassword.ColumnCount = 2;
-            this.tlpPassword.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 46F));
+            this.tlpPassword.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 34F));
             this.tlpPassword.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tlpPassword.Controls.Add(this.btnReload, 0, 0);
             this.tlpPassword.Controls.Add(this.txtPassword, 1, 0);
             this.tlpPassword.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tlpPassword.Location = new System.Drawing.Point(3, 3);
+            this.tlpPassword.Location = new System.Drawing.Point(2, 2);
+            this.tlpPassword.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.tlpPassword.Name = "tlpPassword";
             this.tlpPassword.RowCount = 1;
             this.tlpPassword.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tlpPassword.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 44F));
-            this.tlpPassword.Size = new System.Drawing.Size(646, 44);
+            this.tlpPassword.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 36F));
+            this.tlpPassword.Size = new System.Drawing.Size(485, 37);
             this.tlpPassword.TabIndex = 2;
             // 
             // btnReload
             // 
             this.btnReload.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnReload.Location = new System.Drawing.Point(3, 3);
+            this.btnReload.Location = new System.Drawing.Point(2, 2);
+            this.btnReload.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnReload.Name = "btnReload";
-            this.btnReload.Size = new System.Drawing.Size(40, 38);
+            this.btnReload.Size = new System.Drawing.Size(30, 33);
             this.btnReload.TabIndex = 0;
             this.btnReload.UseVisualStyleBackColor = true;
             this.btnReload.Click += new System.EventHandler(this.btnReload_Click);
@@ -218,11 +227,11 @@ namespace password_manager_CSharpGUI
             this.txtPassword.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.txtPassword.Font = new System.Drawing.Font("Microsoft YaHei UI", 10.01739F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtPassword.ForeColor = System.Drawing.Color.Black;
-            this.txtPassword.Location = new System.Drawing.Point(56, 8);
+            this.txtPassword.Location = new System.Drawing.Point(42, 6);
             this.txtPassword.MainText = "";
-            this.txtPassword.Margin = new System.Windows.Forms.Padding(10, 3, 10, 3);
+            this.txtPassword.Margin = new System.Windows.Forms.Padding(8, 2, 8, 2);
             this.txtPassword.Name = "txtPassword";
-            this.txtPassword.Size = new System.Drawing.Size(580, 28);
+            this.txtPassword.Size = new System.Drawing.Size(435, 24);
             this.txtPassword.TabIndex = 1;
             this.txtPassword.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtPassword.WatermarkActive = false;
@@ -238,13 +247,13 @@ namespace password_manager_CSharpGUI
             // 
             // PasswordGenerator
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.SeaShell;
             this.Controls.Add(this.tlpMain);
-            this.Margin = new System.Windows.Forms.Padding(10);
+            this.Margin = new System.Windows.Forms.Padding(8, 8, 8, 8);
             this.Name = "PasswordGenerator";
-            this.Size = new System.Drawing.Size(652, 178);
+            this.Size = new System.Drawing.Size(489, 145);
             this.Load += new System.EventHandler(this.PasswordGenerator_Load);
             this.tlpMain.ResumeLayout(false);
             this.tlpCharacters.ResumeLayout(false);

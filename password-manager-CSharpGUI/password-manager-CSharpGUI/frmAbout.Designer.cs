@@ -77,12 +77,12 @@ namespace password_manager_CSharpGUI
             this.tlpMain.Controls.Add(this.tlpTop, 0, 0);
             this.tlpMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tlpMain.Location = new System.Drawing.Point(0, 0);
-            this.tlpMain.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tlpMain.Margin = new System.Windows.Forms.Padding(2);
             this.tlpMain.Name = "tlpMain";
             this.tlpMain.RowCount = 2;
             this.tlpMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tlpMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 72F));
-            this.tlpMain.Size = new System.Drawing.Size(556, 305);
+            this.tlpMain.Size = new System.Drawing.Size(584, 305);
             this.tlpMain.TabIndex = 0;
             // 
             // tlpBottom
@@ -99,7 +99,7 @@ namespace password_manager_CSharpGUI
             this.tlpBottom.RowCount = 2;
             this.tlpBottom.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 70F));
             this.tlpBottom.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 30F));
-            this.tlpBottom.Size = new System.Drawing.Size(556, 72);
+            this.tlpBottom.Size = new System.Drawing.Size(584, 72);
             this.tlpBottom.TabIndex = 0;
             // 
             // lblTrademark
@@ -109,7 +109,7 @@ namespace password_manager_CSharpGUI
             this.lblTrademark.Location = new System.Drawing.Point(2, 50);
             this.lblTrademark.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblTrademark.Name = "lblTrademark";
-            this.lblTrademark.Size = new System.Drawing.Size(552, 22);
+            this.lblTrademark.Size = new System.Drawing.Size(580, 22);
             this.lblTrademark.TabIndex = 0;
             this.lblTrademark.Text = "Copyright Notice";
             this.lblTrademark.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -127,21 +127,21 @@ namespace password_manager_CSharpGUI
             this.tlpLinks.Controls.Add(this.lnkNotes, 1, 0);
             this.tlpLinks.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tlpLinks.Location = new System.Drawing.Point(2, 2);
-            this.tlpLinks.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tlpLinks.Margin = new System.Windows.Forms.Padding(2);
             this.tlpLinks.Name = "tlpLinks";
             this.tlpLinks.RowCount = 1;
             this.tlpLinks.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tlpLinks.Size = new System.Drawing.Size(552, 46);
+            this.tlpLinks.Size = new System.Drawing.Size(580, 46);
             this.tlpLinks.TabIndex = 1;
             // 
             // lnkCopyright
             // 
             this.lnkCopyright.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lnkCopyright.LinkColor = System.Drawing.Color.Black;
-            this.lnkCopyright.Location = new System.Drawing.Point(278, 0);
+            this.lnkCopyright.Location = new System.Drawing.Point(292, 0);
             this.lnkCopyright.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lnkCopyright.Name = "lnkCopyright";
-            this.lnkCopyright.Size = new System.Drawing.Size(134, 46);
+            this.lnkCopyright.Size = new System.Drawing.Size(141, 46);
             this.lnkCopyright.TabIndex = 0;
             this.lnkCopyright.TabStop = true;
             this.lnkCopyright.Text = "Copyright";
@@ -152,10 +152,10 @@ namespace password_manager_CSharpGUI
             // 
             this.lnkBlog.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lnkBlog.LinkColor = System.Drawing.Color.Black;
-            this.lnkBlog.Location = new System.Drawing.Point(140, 0);
+            this.lnkBlog.Location = new System.Drawing.Point(147, 0);
             this.lnkBlog.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lnkBlog.Name = "lnkBlog";
-            this.lnkBlog.Size = new System.Drawing.Size(134, 46);
+            this.lnkBlog.Size = new System.Drawing.Size(141, 46);
             this.lnkBlog.TabIndex = 0;
             this.lnkBlog.TabStop = true;
             this.lnkBlog.Text = "Blog";
@@ -169,7 +169,7 @@ namespace password_manager_CSharpGUI
             this.lnkLicense.Location = new System.Drawing.Point(2, 0);
             this.lnkLicense.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lnkLicense.Name = "lnkLicense";
-            this.lnkLicense.Size = new System.Drawing.Size(134, 46);
+            this.lnkLicense.Size = new System.Drawing.Size(141, 46);
             this.lnkLicense.TabIndex = 0;
             this.lnkLicense.TabStop = true;
             this.lnkLicense.Text = "License";
@@ -180,10 +180,10 @@ namespace password_manager_CSharpGUI
             // 
             this.lnkNotes.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lnkNotes.LinkColor = System.Drawing.Color.Black;
-            this.lnkNotes.Location = new System.Drawing.Point(416, 0);
+            this.lnkNotes.Location = new System.Drawing.Point(437, 0);
             this.lnkNotes.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lnkNotes.Name = "lnkNotes";
-            this.lnkNotes.Size = new System.Drawing.Size(134, 46);
+            this.lnkNotes.Size = new System.Drawing.Size(141, 46);
             this.lnkNotes.TabIndex = 0;
             this.lnkNotes.TabStop = true;
             this.lnkNotes.Text = "Notes";
@@ -199,18 +199,18 @@ namespace password_manager_CSharpGUI
             this.tlpTop.Controls.Add(this.spcAbout, 1, 0);
             this.tlpTop.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tlpTop.Location = new System.Drawing.Point(2, 2);
-            this.tlpTop.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tlpTop.Margin = new System.Windows.Forms.Padding(2);
             this.tlpTop.Name = "tlpTop";
             this.tlpTop.RowCount = 1;
             this.tlpTop.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tlpTop.Size = new System.Drawing.Size(552, 229);
+            this.tlpTop.Size = new System.Drawing.Size(580, 229);
             this.tlpTop.TabIndex = 1;
             // 
             // pcbLogo
             // 
             this.pcbLogo.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pcbLogo.Location = new System.Drawing.Point(2, 2);
-            this.pcbLogo.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pcbLogo.Margin = new System.Windows.Forms.Padding(2);
             this.pcbLogo.Name = "pcbLogo";
             this.pcbLogo.Size = new System.Drawing.Size(202, 225);
             this.pcbLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -222,7 +222,7 @@ namespace password_manager_CSharpGUI
             this.spcAbout.Dock = System.Windows.Forms.DockStyle.Fill;
             this.spcAbout.IsSplitterFixed = true;
             this.spcAbout.Location = new System.Drawing.Point(214, 8);
-            this.spcAbout.Margin = new System.Windows.Forms.Padding(8, 8, 8, 8);
+            this.spcAbout.Margin = new System.Windows.Forms.Padding(8);
             this.spcAbout.Name = "spcAbout";
             this.spcAbout.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
@@ -234,7 +234,7 @@ namespace password_manager_CSharpGUI
             // 
             this.spcAbout.Panel2.Controls.Add(this.txtLicense);
             this.spcAbout.Panel2Collapsed = true;
-            this.spcAbout.Size = new System.Drawing.Size(330, 213);
+            this.spcAbout.Size = new System.Drawing.Size(358, 213);
             this.spcAbout.SplitterDistance = 126;
             this.spcAbout.SplitterWidth = 3;
             this.spcAbout.TabIndex = 1;
@@ -252,7 +252,7 @@ namespace password_manager_CSharpGUI
             this.tlpAbout.Controls.Add(this.tlpInvolve, 0, 5);
             this.tlpAbout.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tlpAbout.Location = new System.Drawing.Point(0, 0);
-            this.tlpAbout.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tlpAbout.Margin = new System.Windows.Forms.Padding(2);
             this.tlpAbout.Name = "tlpAbout";
             this.tlpAbout.RowCount = 6;
             this.tlpAbout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 53F));
@@ -261,7 +261,7 @@ namespace password_manager_CSharpGUI
             this.tlpAbout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 28F));
             this.tlpAbout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tlpAbout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24F));
-            this.tlpAbout.Size = new System.Drawing.Size(330, 213);
+            this.tlpAbout.Size = new System.Drawing.Size(358, 213);
             this.tlpAbout.TabIndex = 0;
             // 
             // lblAbout
@@ -271,7 +271,7 @@ namespace password_manager_CSharpGUI
             this.lblAbout.Location = new System.Drawing.Point(8, 129);
             this.lblAbout.Margin = new System.Windows.Forms.Padding(8, 0, 2, 0);
             this.lblAbout.Name = "lblAbout";
-            this.lblAbout.Size = new System.Drawing.Size(320, 60);
+            this.lblAbout.Size = new System.Drawing.Size(348, 60);
             this.lblAbout.TabIndex = 4;
             this.lblAbout.Text = "About";
             this.lblAbout.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -283,7 +283,7 @@ namespace password_manager_CSharpGUI
             this.lblVersion.Location = new System.Drawing.Point(8, 75);
             this.lblVersion.Margin = new System.Windows.Forms.Padding(8, 0, 2, 0);
             this.lblVersion.Name = "lblVersion";
-            this.lblVersion.Size = new System.Drawing.Size(320, 26);
+            this.lblVersion.Size = new System.Drawing.Size(348, 26);
             this.lblVersion.TabIndex = 2;
             this.lblVersion.Text = "11.1 - Alpha (64-bit)";
             this.lblVersion.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -295,7 +295,7 @@ namespace password_manager_CSharpGUI
             this.lblName.Location = new System.Drawing.Point(0, 0);
             this.lblName.Margin = new System.Windows.Forms.Padding(0, 0, 2, 0);
             this.lblName.Name = "lblName";
-            this.lblName.Size = new System.Drawing.Size(328, 53);
+            this.lblName.Size = new System.Drawing.Size(356, 53);
             this.lblName.TabIndex = 0;
             this.lblName.Text = "Muragala";
             this.lblName.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
@@ -307,7 +307,7 @@ namespace password_manager_CSharpGUI
             this.lblProduct.Location = new System.Drawing.Point(8, 53);
             this.lblProduct.Margin = new System.Windows.Forms.Padding(8, 0, 2, 0);
             this.lblProduct.Name = "lblProduct";
-            this.lblProduct.Size = new System.Drawing.Size(320, 22);
+            this.lblProduct.Size = new System.Drawing.Size(348, 22);
             this.lblProduct.TabIndex = 1;
             this.lblProduct.Text = "Password Manager";
             // 
@@ -319,7 +319,7 @@ namespace password_manager_CSharpGUI
             this.lblUpdate.Location = new System.Drawing.Point(8, 101);
             this.lblUpdate.Margin = new System.Windows.Forms.Padding(8, 0, 2, 0);
             this.lblUpdate.Name = "lblUpdate";
-            this.lblUpdate.Size = new System.Drawing.Size(320, 28);
+            this.lblUpdate.Size = new System.Drawing.Size(348, 28);
             this.lblUpdate.TabIndex = 3;
             this.lblUpdate.Text = "Update...";
             this.lblUpdate.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -328,9 +328,9 @@ namespace password_manager_CSharpGUI
             // 
             this.tlpInvolve.ColumnCount = 5;
             this.tlpInvolve.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 128F));
-            this.tlpInvolve.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 37F));
-            this.tlpInvolve.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 51F));
-            this.tlpInvolve.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 67F));
+            this.tlpInvolve.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 66F));
+            this.tlpInvolve.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 61F));
+            this.tlpInvolve.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 80F));
             this.tlpInvolve.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tlpInvolve.Controls.Add(this.lnkTranslate, 0, 0);
             this.tlpInvolve.Controls.Add(this.lnkGithub, 0, 0);
@@ -338,11 +338,11 @@ namespace password_manager_CSharpGUI
             this.tlpInvolve.Controls.Add(this.lnkIssues, 3, 0);
             this.tlpInvolve.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tlpInvolve.Location = new System.Drawing.Point(2, 191);
-            this.tlpInvolve.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tlpInvolve.Margin = new System.Windows.Forms.Padding(2);
             this.tlpInvolve.Name = "tlpInvolve";
             this.tlpInvolve.RowCount = 1;
             this.tlpInvolve.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tlpInvolve.Size = new System.Drawing.Size(326, 20);
+            this.tlpInvolve.Size = new System.Drawing.Size(354, 20);
             this.tlpInvolve.TabIndex = 5;
             // 
             // lnkTranslate
@@ -350,10 +350,10 @@ namespace password_manager_CSharpGUI
             this.lnkTranslate.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lnkTranslate.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.886957F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lnkTranslate.LinkColor = System.Drawing.Color.Black;
-            this.lnkTranslate.Location = new System.Drawing.Point(167, 0);
+            this.lnkTranslate.Location = new System.Drawing.Point(196, 0);
             this.lnkTranslate.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lnkTranslate.Name = "lnkTranslate";
-            this.lnkTranslate.Size = new System.Drawing.Size(47, 20);
+            this.lnkTranslate.Size = new System.Drawing.Size(57, 20);
             this.lnkTranslate.TabIndex = 0;
             this.lnkTranslate.TabStop = true;
             this.lnkTranslate.Text = "Translate";
@@ -368,7 +368,7 @@ namespace password_manager_CSharpGUI
             this.lnkGithub.Location = new System.Drawing.Point(130, 0);
             this.lnkGithub.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lnkGithub.Name = "lnkGithub";
-            this.lnkGithub.Size = new System.Drawing.Size(33, 20);
+            this.lnkGithub.Size = new System.Drawing.Size(62, 20);
             this.lnkGithub.TabIndex = 0;
             this.lnkGithub.TabStop = true;
             this.lnkGithub.Text = "Github";
@@ -393,10 +393,10 @@ namespace password_manager_CSharpGUI
             this.lnkIssues.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lnkIssues.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.886957F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lnkIssues.LinkColor = System.Drawing.Color.Black;
-            this.lnkIssues.Location = new System.Drawing.Point(218, 0);
+            this.lnkIssues.Location = new System.Drawing.Point(257, 0);
             this.lnkIssues.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lnkIssues.Name = "lnkIssues";
-            this.lnkIssues.Size = new System.Drawing.Size(63, 20);
+            this.lnkIssues.Size = new System.Drawing.Size(76, 20);
             this.lnkIssues.TabIndex = 0;
             this.lnkIssues.TabStop = true;
             this.lnkIssues.Text = "Issues";
@@ -408,12 +408,12 @@ namespace password_manager_CSharpGUI
             this.txtLicense.Dock = System.Windows.Forms.DockStyle.Fill;
             this.txtLicense.HideSelection = false;
             this.txtLicense.Location = new System.Drawing.Point(0, 0);
-            this.txtLicense.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtLicense.Margin = new System.Windows.Forms.Padding(2);
             this.txtLicense.Multiline = true;
             this.txtLicense.Name = "txtLicense";
             this.txtLicense.ReadOnly = true;
             this.txtLicense.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.txtLicense.Size = new System.Drawing.Size(112, 37);
+            this.txtLicense.Size = new System.Drawing.Size(150, 46);
             this.txtLicense.TabIndex = 0;
             this.txtLicense.TabStop = false;
             this.txtLicense.WordWrap = false;
@@ -433,14 +433,14 @@ namespace password_manager_CSharpGUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(556, 305);
+            this.ClientSize = new System.Drawing.Size(584, 305);
             this.Controls.Add(this.tlpMain);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(572, 344);
+            this.MaximumSize = new System.Drawing.Size(600, 344);
             this.MinimizeBox = false;
-            this.MinimumSize = new System.Drawing.Size(572, 344);
+            this.MinimumSize = new System.Drawing.Size(600, 344);
             this.Name = "frmAbout";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "About";

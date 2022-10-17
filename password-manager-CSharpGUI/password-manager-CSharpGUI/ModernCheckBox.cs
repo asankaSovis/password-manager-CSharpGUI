@@ -30,12 +30,12 @@ namespace password_manager_CSharpGUI
             checkIcons = _checkIcons;
         }
 
-        public string Text()
+        public new string Text()
         {
             return lblString.Text;
         }
 
-        public void Text(string text)
+        public new void Text(string text)
         {
             lblString.Text = text;
         }
