@@ -125,12 +125,13 @@ This is quite straightforward as it displays the about information for the appli
 Based on [Password Manager (C# Library)](https://github.com/asankaSovis/password-manager-CSharpLibrary) [version 1.0.2 Alpha](https://github.com/asankaSovis/password-manager-CSharpLibrary/releases/tag/v1.0.2-alpha)
 **NOTE: This is the initial release**
 
-[Password Manager GUI Application Version 1.0.0 Alpha](https://github.com/asankaSovis/password-manager-CSharpLibrary/blob/main/Releases/C%23%20CLI%20Program/password_manager_CLI_v1.0.0.zip)
-> MD5: `0de50a1fd43d7a2164942f164bf4d880`
+[Password Manager GUI Application Version 1.0.0 Alpha](https://github.com/asankaSovis/password-manager-CSharpGUI/releases/tag/v1.0.0-alpha)
+
+> MD5: `9df9ddb957858e03cbd87874316fd657`
 >
-> SHA1: `028eb7f76518b3cb2d4fb853116cf688d45569e1`
+> SHA1: `6e224a92dd38839db8b8dfa035b98ddd462a7eb0`
 >
-> SHA256: `c4a4fede4fe527832ab0f7656fa4678145737ebb6dc49b43e1218df17629c3d1`
+> SHA256: `0e2dbbfffa2f6b4d0aad30fc3967777cb31dc8a1b51b44934bb02361d72ccd67`
 
 [Read the Blog](https://asanka.hashnode.dev/muragala-password-manager-05)
 
