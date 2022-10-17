@@ -27,7 +27,7 @@ namespace password_manager_CSharpGUI
         //   20: Strong, 21: Very strong
         string[] text = new string[22]; // Display text strings
 
-        int passwordLength = 12;
+        int passwordLength = 1;
         int[] lengthRange = { 0, 32 };
 
         // Colour pallette of the meter
