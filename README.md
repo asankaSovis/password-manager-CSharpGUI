@@ -133,7 +133,7 @@ Based on [Password Manager (C# Library)](https://github.com/asankaSovis/password
 >
 > SHA256: `0e2dbbfffa2f6b4d0aad30fc3967777cb31dc8a1b51b44934bb02361d72ccd67`
 
-[Read the Blog](https://asanka.hashnode.dev/muragala-password-manager-05)
+[Read the Blog](https://asanka.hashnode.dev/muragala-password-manager-06)
 
 ## Fixes and Features for the Next Release
 - *Suggest new features*
