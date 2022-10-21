@@ -7,7 +7,7 @@
         I will continue to improve ths library and CLI program as well. Make sure to check out the
         Python edition as well as it is the main program.
         
-*Links: [Password Manager Python](https://github.com/asankaSovis/password-manager-Python), [Password Manager C# CLI and Library](https://github.com/asankaSovis/password-manager-CSharpLibrary)*
+*Links: [Password Manager Python](https://github.com/asankaSovis/password-manager-Python), [Password Manager C# CLI and Library](https://github.com/asankaSovis/password-manager-CSharpLibrary), [Password Manager C# GUI](https://github.com/asankaSovis/password-manager-CSharpGUI)*
 
 Muragala is a password manager designed to make managing passwords easy and secure. My goal is to make it a secure and reliable password manager available in the public domain for everyone to use. Privacy and security is for everyone, this is the core value behind this project. It uses [Fernet encryption](https://github.com/thangchung/fernet-dotnet) to encrypt passwords and store them on a database. It uses two factor authentication with a password and randomly generated salt to encrypt the database. The application is built to be as simple as possible to make sure it's secure. On the other hand, this project is an experiment to see how to make a better security application.
 
@@ -125,14 +125,15 @@ This is quite straightforward as it displays the about information for the appli
 Based on [Password Manager (C# Library)](https://github.com/asankaSovis/password-manager-CSharpLibrary) [version 1.0.2 Alpha](https://github.com/asankaSovis/password-manager-CSharpLibrary/releases/tag/v1.0.2-alpha)
 **NOTE: This is the initial release**
 
-[Password Manager GUI Application Version 1.0.0 Alpha](https://github.com/asankaSovis/password-manager-CSharpLibrary/blob/main/Releases/C%23%20CLI%20Program/password_manager_CLI_v1.0.0.zip)
-> MD5: `0de50a1fd43d7a2164942f164bf4d880`
->
-> SHA1: `028eb7f76518b3cb2d4fb853116cf688d45569e1`
->
-> SHA256: `c4a4fede4fe527832ab0f7656fa4678145737ebb6dc49b43e1218df17629c3d1`
+[Password Manager GUI Application Version 1.0.0 Alpha](https://github.com/asankaSovis/password-manager-CSharpGUI/releases/tag/v1.0.0-alpha)
 
-[Read the Blog](https://asanka.hashnode.dev/muragala-password-manager-05)
+> MD5: `9df9ddb957858e03cbd87874316fd657`
+>
+> SHA1: `6e224a92dd38839db8b8dfa035b98ddd462a7eb0`
+>
+> SHA256: `0e2dbbfffa2f6b4d0aad30fc3967777cb31dc8a1b51b44934bb02361d72ccd67`
+
+[Read the Blog](https://asanka.hashnode.dev/muragala-password-manager-06)
 
 ## Fixes and Features for the Next Release
 - *Suggest new features*
