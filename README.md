@@ -7,7 +7,7 @@
         I will continue to improve ths library and CLI program as well. Make sure to check out the
         Python edition as well as it is the main program.
         
-*Links: [Password Manager Python](https://github.com/asankaSovis/password-manager-Python), [Password Manager C# CLI and Library](https://github.com/asankaSovis/password-manager-CSharpLibrary)*
+*Links: [Password Manager Python](https://github.com/asankaSovis/password-manager-Python), [Password Manager C# CLI and Library](https://github.com/asankaSovis/password-manager-CSharpLibrary), [Password Manager C# GUI](https://github.com/asankaSovis/password-manager-CSharpGUI)*
 
 Muragala is a password manager designed to make managing passwords easy and secure. My goal is to make it a secure and reliable password manager available in the public domain for everyone to use. Privacy and security is for everyone, this is the core value behind this project. It uses [Fernet encryption](https://github.com/thangchung/fernet-dotnet) to encrypt passwords and store them on a database. It uses two factor authentication with a password and randomly generated salt to encrypt the database. The application is built to be as simple as possible to make sure it's secure. On the other hand, this project is an experiment to see how to make a better security application.
 
